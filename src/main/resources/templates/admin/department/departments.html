@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:include="~{admin/fragments/left-sidebar}"></th:block>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Topbar Start -->
+            <th:block th:include="~{admin/fragments/top-bar}"></th:block>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                    <li class="breadcrumb-item active">Products</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Products</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <a th:href="@{departments/create}" class="btn btn-danger mb-2"><i
+                                                class="mdi mdi-plus-circle mr-2"></i> Create Department</a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="text-sm-right">
+                                            <button type="button" class="btn btn-success mb-2 mr-1"><i
+                                                    class="mdi mdi-settings"></i></button>
+                                            <button type="button" class="btn btn-light mb-2 mr-1">Import</button>
+                                            <button type="button" class="btn btn-light mb-2">Export</button>
+                                        </div>
+                                    </div><!-- end col-->
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-centered w-100 dt-responsive nowrap"
+                                           id="products-datatable">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th class="all" style="width: 20px;">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck1">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck1">&nbsp;</label>
+                                                </div>
+                                            </th>
+                                            <th class="all">Main Category</th>
+                                            <th>Active</th>
+                                            <th>Added Date</th>
+                                            <th>Position</th>
+                                            <th style="width: 85px;">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck1">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck1">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck3">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck3">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        <!--Data For One Category-->
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck2">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!--Main Category-->
+                                            <td>
+                                                <!--Main Category Icon-->
+                                                <i class="mdi mdi-desktop-mac"></i>
+                                                <!--Main Category Name-->
+                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                    <a href="apps-ecommerce-departments-details.html"
+                                                       class="text-body">Computers</a>
+                                                </p>
+                                            </td>
+                                            <!--Active-->
+                                            <td>
+                                                <span class="badge badge-success">Active</span>
+                                            </td>
+                                            <!--Added Date-->
+                                            <td>
+                                                09/12/2018
+                                            </td>
+                                            <!--Position-->
+                                            <td>
+                                                2
+                                            </td>
+                                            <!--Actions-->
+                                            <td class="table-action">
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i
+                                                        class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <th:block th:include="~{admin/fragments/footer}"></th:block>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+
+
+<!-- bundle -->
+<th:block th:include="~{admin/fragments/bottomjs}"></th:block>
+<!-- end demo js-->
+
+</body>
+
+</html>
