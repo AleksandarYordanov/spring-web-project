@@ -2,14 +2,14 @@ package project.spring.project.admin.category.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.category.service.CategoryService;
 import project.spring.project.admin.department.model.DepartmentDTO;
 import project.spring.project.admin.department.service.DepartmentService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -22,9 +22,23 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @GetMapping(value = "/details/{id}")
+    public ModelAndView buyItem(@PathVariable String id) {
+        ModelAndView modelAndView  = new ModelAndView("admin/category/category-details");
+
+       CategoryDTO categoryDTO= categoryService.getById(Long.parseLong(id));
+        modelAndView.addObject(categoryDTO);
+
+        return modelAndView;
+    }
+
     @GetMapping()
-    public String categories(Model model){
-        return "admin/category/categories";
+    public ModelAndView categories(Model model){
+        ModelAndView modelAndView  = new ModelAndView("admin/category/categories");
+
+      List<CategoryDTO> categories = categoryService.getAll();
+        modelAndView.addObject(categories);
+        return modelAndView;
     }
 
     @GetMapping("/create")

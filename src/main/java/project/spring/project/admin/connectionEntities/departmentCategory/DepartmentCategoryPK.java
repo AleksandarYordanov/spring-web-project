@@ -3,12 +3,43 @@ package project.spring.project.admin.connectionEntities.departmentCategory;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class DepartmentCategoryPK implements Serializable {
 
-    @Column(name = "DEPARTMENT_ID")
-    private Long department_id;
-    @Column(name = "CATEGORY_ID")
-    private Long category_id;
+
+    private Long departmentId;
+
+    private Long categoryId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DepartmentCategoryPK departmentCategoryPK = (DepartmentCategoryPK) o;
+        return Objects.equals(departmentId, departmentCategoryPK.departmentId) &&
+                Objects.equals(categoryId, departmentCategoryPK.categoryId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(departmentId, categoryId);
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }

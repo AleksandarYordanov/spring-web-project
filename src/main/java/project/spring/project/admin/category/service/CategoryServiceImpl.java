@@ -32,7 +32,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void create(CategoryDTO categoryDTO) {
-        CategoryEntity categoryEntity = CategoryMapper.INSTANCE.mapDepartmentDtoToEntity(categoryDTO);
+        CategoryEntity categoryEntity = CategoryMapper.INSTANCE.mapCategoryDtoToEntity(categoryDTO);
         categoryRepository.save(categoryEntity);
+    }
+
+    @Override
+    public CategoryDTO getById(Long id) {
+        CategoryEntity categoryEntity = categoryRepository.getOne(id);
+       return CategoryMapper.INSTANCE.mapCategoryEntityToDto(categoryEntity);
     }
 }

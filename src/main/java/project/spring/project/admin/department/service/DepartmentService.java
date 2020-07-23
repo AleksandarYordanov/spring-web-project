@@ -7,4 +7,6 @@ import java.util.List;
 public interface DepartmentService {
     List<DepartmentDTO> getAll();
     void create(DepartmentDTO departmentDTO);
+
+    void create(DepartmentDTO department, List<Long> categoryIds);
 }

@@ -53,6 +53,9 @@ dependencies {
     //implementation 'org.springframework.boot:spring-boot-starter-security'
     //implementation 'org.springframework.security:spring-security-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    //picture-storage
+    compile 'com.google.cloud:google-cloud-storage:1.111.2'
    
 
     compileOnly "org.webjars:webjars-locator:${webjarsLocatorVersion}"
@@ -64,6 +67,8 @@ dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.mapstruct:mapstruct-processor"
     annotationProcessor "org.projectlombok:lombok"
+
+
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
