@@ -2,6 +2,8 @@ package project.spring.project.admin.category.model;
 
 
 import lombok.Data;
+import project.spring.project.admin.department.model.DepartmentEntity;
+import project.spring.project.admin.type.model.TypeEntity;
 
 
 import javax.persistence.*;
@@ -31,8 +33,13 @@ public class CategoryEntity {
     @JoinTable( name = "departments_categories",
             joinColumns = @JoinColumn(referencedColumnName = "id", name = "categoryId"),
             inverseJoinColumns = @JoinColumn(referencedColumnName = "id", name = "departmentId"))
-    private List<CategoryEntity> departments;
+    private List<DepartmentEntity> departments;
 
+    @ManyToMany
+    @JoinTable( name = "categories_types",
+            joinColumns = @JoinColumn(referencedColumnName = "id", name = "categoryId"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "id", name = "typeId"))
+    private List<TypeEntity> types;
 
     public Long getId() {
         return id;
@@ -64,5 +71,21 @@ public class CategoryEntity {
 
     public void setAddedDate(Timestamp addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public List<DepartmentEntity> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<DepartmentEntity> departments) {
+        this.departments = departments;
+    }
+
+    public List<TypeEntity> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<TypeEntity> types) {
+        this.types = types;
     }
 }

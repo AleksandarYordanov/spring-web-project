@@ -1,6 +1,8 @@
 package project.spring.project.admin.product.model;
 
 import lombok.Data;
+import project.spring.project.admin.category.model.CategoryEntity;
+import project.spring.project.admin.type.model.TypeEntity;
 import project.spring.project.admin.utils.fileUpload.UploadFileEntity;
 
 import javax.persistence.*;
@@ -41,6 +43,8 @@ public class ProductEntity {
     @Column
     @Lob
     private String description;
+
+
 
 
 
@@ -115,5 +119,6 @@ public class ProductEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
 }

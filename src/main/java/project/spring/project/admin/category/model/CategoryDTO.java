@@ -2,9 +2,12 @@ package project.spring.project.admin.category.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import project.spring.project.admin.department.model.DepartmentDTO;
+import project.spring.project.admin.type.model.TypeDTO;
+import project.spring.project.admin.type.model.TypeEntity;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -19,7 +22,9 @@ public class CategoryDTO {
 
     private Timestamp addedDate;
 
-    private Set<DepartmentDTO> departments = new HashSet<DepartmentDTO>();
+    private List<DepartmentDTO> departments;
+
+    private List<TypeDTO> types;
 
 
 
@@ -56,11 +61,21 @@ public class CategoryDTO {
         this.addedDate = addedDate;
     }
 
-    public Set<DepartmentDTO> getDepartments() {
+    public List<DepartmentDTO> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Set<DepartmentDTO> departments) {
+    public void setDepartments(List<DepartmentDTO> departments) {
         this.departments = departments;
     }
+
+    public List<TypeDTO> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<TypeDTO> types) {
+        this.types = types;
+    }
+
+
 }

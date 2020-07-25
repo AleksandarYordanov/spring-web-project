@@ -41,132 +41,133 @@
                 </div>
                 <!-- end page title -->
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
+
+                <div class="card">
+                    <div class="card-body">
 
 
-                                <div class="row">
-                                    <div class="col-6 mx-auto">
-                                        <form  th:action="@{/admin/categories/create}"  method="post">
+                        <form class="row justify-content-around" th:action="@{/admin/categories/create}" method="post">
+                            <div class="col ">
+
+                                <!--Category Name-->
+                                <div class="form-group">
+                                    <label for="validationCustom01">Name</label>
+                                    <input type="text" id="validationCustom01" class="form-control"
+                                           name="name"
+                                           placeholder="Enter category name">
+                                </div>
+
+
+                                <!--Slider for Active-->
+                                <div class="form-group">
+                                    <label>Category active</label>
+                                    <div class="custom-control custom-switch"></div>
+                                    <input type="checkbox" id="switch3" checked data-switch="success"
+                                           name="active"/>
+                                    <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
+                                </div>
 
 
 
+                                <!--Submit button-->
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                </div>
 
-                                            <!--Category Name-->
+                            </div> <!-- end col-->
+                            <div class="col right">
+
+                                <div class="form-group">
+                                    <table class="table table-striped table-centered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Type Name</th>
+                                            <th>Active</th>
+                                            <th style="width: 85px;">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-plugin="dragula" class="with-position category-table">
+                                        <tr></tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row justify-content-end">
+                                        <div class="col-1">
                                             <div class="form-group">
-                                                <label for="validationCustom01">Name</label>
-                                                <input type="text" id="validationCustom01" class="form-control" name="name"
-                                                       placeholder="Enter category name">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-rounded  align-self-end  category-picker-button-show">
+                                                    +
+                                                </button>
                                             </div>
-
-                                            <!-- Multiple Select for icons -->
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <div class="col-3">
                                             <div class="form-group">
-                                                <label>Department Icon</label>
-                                                <input type="text" class=" form-control use-material-icon-picker"  name="icon">
+                                                <div class="category-picker w-25" tabindex="-1">
+                                                    <input class="category-picker-input w-100" type="text"
+                                                           placeholder="Search...">
+                                                    <table class="table table-striped  mb-5">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Type Name</th>
+                                                            <th>Active</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody class="category-picker-table">
+                                                        <th:block th:each="type : ${allTypes}">
+                                                            <tr>
+                                                                <td th:name="type.name" th:text="${type.name}">...</td>
+                                                                <td>
+                                                                    <div th:if="${type.active}">
+                                                                        <span class="badge badge-success">Active</span>
+                                                                    </div>
+                                                                    <div th:unless="${type.active}">
+                                                                        <span class="badge badge-danger">Disabled</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td name="typeId" style="display:none;" class="value"
+                                                                    th:text="${type.id}"></td>
+
+                                                            </tr>
+                                                        </th:block>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-
-
-
-
-
-                                            <!--Slider for Active-->
-                                            <div class="form-group">
-                                                <label>Category active</label>
-                                                <div class="custom-control custom-switch"></div>
-                                                <input type="checkbox" id="switch3" checked data-switch="success" name="active"/>
-                                                <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
-                                            </div>
-
-
-
-
-                                            <!--Category Position-->
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <input name="position" type="text" class="form-control" maxlength="25"
-                                                       data-toggle="maxlength">
-                                            </div>
-
-                                            <!--Submit button-->
-                                            <div class="form-group">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
-                                            </div>
-                                        </form>
-                                    </div> <!-- end col-->
-
-                                    <div class="col-xl-6">
-
-                                        <table class="table table-striped table-centered mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>Type Name</th>
-                                                <th>Active</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody data-plugin="dragula" class="with-position">
-                                            <tr>
-
-                                                <td>Iphone</td>
-                                                <td>
-                                                    <span class="badge badge-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>Iphone</td>
-                                                <td>
-                                                    <span class="badge badge-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>Iphone</td>
-                                                <td>
-                                                    <span class="badge badge-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>Iphone</td>
-                                                <td>
-                                                    <span class="badge badge-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>Iphone</td>
-                                                <td>
-                                                    <span class="badge badge-success">Active</span>
-                                                </td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div><!-- end col-->
-
+                                        </div>
+                                    </div>
 
                                 </div>
-                                <!-- end row -->
+
+                            </div>
+                            <!-- Select Category -->
 
 
 
-                            </div> <!-- end card-body -->
-                        </div> <!-- end card-->
-                    </div> <!-- end col-->
-                </div>
-                <!-- end row-->
 
-            </div> <!-- container -->
 
-        </div> <!-- content -->
+                        </form>
 
-        <!-- Footer Start -->
-        <th:block th:include="~{admin/fragments/footer}"></th:block>
-        <!-- end Footer -->
+                    </div> <!-- end card-body-->
+                </div><!-- end card-->
 
-    </div>
+
+            </div>
+
+            <!-- container -->
+
+        </div>
+    </div> <!-- content -->
+
+    <!-- Footer Start -->
+    <th:block th:include="~{admin/fragments/footer}"></th:block>
+    <!-- end Footer -->
+
 
     <!-- ============================================================== -->
     <!-- End Page content -->
@@ -177,10 +178,10 @@
 <!-- END wrapper -->
 
 
-
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
 <!-- end demo js-->
+
 
 </body>
 

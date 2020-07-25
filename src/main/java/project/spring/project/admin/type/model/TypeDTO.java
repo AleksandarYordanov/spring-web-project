@@ -20,6 +20,7 @@ public class TypeDTO {
     private boolean active;
     private Timestamp addedDate;
     private List<ProductDTO> products;
+    private List<CategoryDTO> categories;
 
     public Long getId() {
         return id;
@@ -59,5 +60,13 @@ public class TypeDTO {
 
     public void setProducts(List<ProductDTO> products) {
         this.products = products;
+    }
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDTO> categories) {
+        this.categories = categories;
     }
 }

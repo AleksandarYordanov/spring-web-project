@@ -22,6 +22,14 @@ public interface TypeMapper {
 
     ProductDTO mapProductEntityToDto(ProductEntity category);
 
+    List<CategoryEntity> mapCategoryDtoListToEntity(List<CategoryDTO> products);
+
+    List<CategoryDTO> mapCategoryEntityListToDto(List<CategoryEntity> products);
+
+    CategoryEntity mapCategoryDtoToEntity(CategoryDTO category);
+
+    CategoryDTO mapCategoryEntityToDto(CategoryEntity category);
+
     TypeEntity mapTypeDtoToEntity(TypeDTO dto);
 
     TypeDTO mapTypeEntityToDto(TypeEntity entity);

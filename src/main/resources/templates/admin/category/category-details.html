@@ -41,19 +41,18 @@
                 </div>
                 <!-- end page title -->
 
+
                 <div class="card">
                     <div class="card-body">
 
 
-
-                        <form class="row" th:action="@{/admin/categories/details/${categoryDTO.getId()}}" method="post">
+                        <form class="row justify-content-around" th:action="@{ ${id}}" method="post">
                             <div class="col ">
-
 
                                 <!--Category Name-->
                                 <div class="form-group">
                                     <label for="validationCustom01">Name</label>
-                                    <input th:text="${categoryDTO.getName()}" type="text" id="validationCustom01" class="form-control"
+                                    <input th:value="${categoryDTO.getName()}" type="text" id="validationCustom01" class="form-control"
                                            name="name"
                                            placeholder="Enter category name">
                                 </div>
@@ -63,12 +62,11 @@
                                 <div class="form-group">
                                     <label>Category active</label>
                                     <div class="custom-control custom-switch"></div>
-                                    <input th:value="${categoryDTO.isActive()}" type="checkbox" id="switch3" checked data-switch="success"
+                                    <input type="checkbox" id="switch3" checked data-switch="success"
                                            name="active"/>
                                     <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                                 </div>
-
-
+>
 
                                 <!--Submit button-->
                                 <div class="form-group">
@@ -76,94 +74,116 @@
                                 </div>
 
                             </div> <!-- end col-->
-                            <div class="col ">
-                                <table class="table table-striped table-centered mb-0">
-                                    <thead>
-                                    <tr>
-                                        <th>Type Name</th>
-                                        <th>Active</th>
-                                        <th style="width: 85px;">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody data-plugin="dragula" class="with-position category-table">
-                                    <tr></tr>
-                                    <tr>
-                                        <td>Iphone</td>
-                                        <td>
-                                            <span class="badge badge-success">Active</span>
-                                        </td>
-                                        <td>
-                                            <a class="action-icon category-table-remove-item"> <i
-                                                    class="mdi mdi-delete"></i></a>
-                                        </td>
-                                    </tr>
+                            <div class="col right">
 
-                                    </tbody>
-                                </table>
                                 <div class="form-group">
-                                    <button type="button"
-                                            class="btn btn-primary btn-rounded  align-self-end  category-picker-button-show">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="row">
-
-                            <div class="col-xl-6 justify-content-end">
-
-
-
-                                <div class="col-6 offset-md-6">
-
-                                    <!-- Select Category -->
-                                    <div class="category-picker w-25" tabindex="-1">
-                                        <input class="category-picker-input w-100" type="text"
-                                               placeholder="Search...">
-                                        <table class="table table-striped  mb-5">
-                                            <thead>
+                                    <table class="table table-striped table-centered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Type Name</th>
+                                            <th>Active</th>
+                                            <th style="width: 85px;">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-plugin="dragula" class="with-position category-table">
+                                        <tr></tr>
+                                        <th:block th:each="type : ${categoryDTO.getTypes()}">
                                             <tr>
-                                                <th>Type Name</th>
-                                                <th>Active</th>
+                                                <td th:text="${type.getName()}">Iphone</td>
+                                                <td>
+                                                    <div th:if="${type.active}">
+                                                        <span class="badge badge-success">Active</span>
+                                                    </div>
+                                                    <div th:unless="${type.active}">
+                                                        <span class="badge badge-danger">Disabled</span>
+                                                    </div>
+                                                    <input type="hidden" name="typeId"  th:value="${type.getId()}"/>`
+                                                </td>
+                                                <td>
+                                                    <a class="action-icon category-table-remove-item"> <i
+                                                            class="mdi mdi-delete"></i></a>
+                                                </td>
                                             </tr>
-                                            </thead>
-                                            <tbody class="category-picker-table">
-                                            <th:block th:each="category : ${allCategories}">
-                                                <tr>
-                                                    <td th:name="category.name" th:text="${category.name}">...</td>
-                                                    <td>
-                                                        <div th:if="${category.active}">
-                                                            <span class="badge badge-success">Active</span>
-                                                        </div>
-                                                        <div th:unless="${category.active}">
-                                                            <span class="badge badge-danger">Disabled</span>
-                                                        </div>
-                                                    </td>
-                                                    <input type="hidden" name="category" id="personId" th:value="${category.id}" />
-                                                </tr>
-                                            </th:block>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- End Select Category -->
+                                        </th:block>
+                                        </tbody>
 
-                                </div><!-- end col-->
-                            </div> <!-- end card-body -->
-                        </div> <!-- end row-->
+                                    </table>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row justify-content-end">
+                                        <div class="col-1">
+                                            <div class="form-group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-rounded  align-self-end  category-picker-button-show">
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <div class="category-picker w-25" tabindex="-1">
+                                                    <input class="category-picker-input w-100" type="text"
+                                                           placeholder="Search...">
+                                                    <table class="table table-striped  mb-5">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Type Name</th>
+                                                            <th>Active</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody class="category-picker-table">
+                                                        <th:block th:each="type : ${allTypes}">
+                                                            <tr>
+                                                                <td th:name="type.name" th:text="${type.name}">...</td>
+                                                                <td>
+                                                                    <div th:if="${type.active}">
+                                                                        <span class="badge badge-success">Active</span>
+                                                                    </div>
+                                                                    <div th:unless="${type.active}">
+                                                                        <span class="badge badge-danger">Disabled</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td name="typeId" style="display:none;" class="value"
+                                                                    th:text="${type.id}"></td>
+
+                                                            </tr>
+                                                        </th:block>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Select Category -->
+
+
+
+
+
                         </form>
+
                     </div> <!-- end card-body-->
                 </div><!-- end card-->
 
-            </div> <!-- container -->
 
-        </div> <!-- content -->
+            </div>
 
-        <!-- Footer Start -->
-        <th:block th:include="~{admin/fragments/footer}"></th:block>
-        <!-- end Footer -->
+            <!-- container -->
 
-    </div>
+        </div>
+    </div> <!-- content -->
+
+    <!-- Footer Start -->
+    <th:block th:include="~{admin/fragments/footer}"></th:block>
+    <!-- end Footer -->
+
 
     <!-- ============================================================== -->
     <!-- End Page content -->
@@ -174,10 +194,10 @@
 <!-- END wrapper -->
 
 
-
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
 <!-- end demo js-->
+
 
 </body>
 

@@ -2,8 +2,6 @@ package project.spring.project.admin.type.service;
 
 
 import org.springframework.stereotype.Service;
-import project.spring.project.admin.connectionEntities.departmentCategory.model.DepartmentCategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.model.DepartmentCategoryPK;
 import project.spring.project.admin.connectionEntities.typeProduct.model.TypeProductDTO;
 import project.spring.project.admin.connectionEntities.typeProduct.model.TypeProductPK;
 import project.spring.project.admin.connectionEntities.typeProduct.service.TypeProductService;
@@ -13,9 +11,9 @@ import project.spring.project.admin.type.model.TypeDTO;
 import project.spring.project.admin.type.model.TypeEntity;
 import project.spring.project.admin.type.model.TypeMapper;
 import project.spring.project.admin.type.repository.TypeRepository;
+import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +24,13 @@ public class TypeServiceImpl implements TypeService {
     private final TypeRepository typeRepository;
     private final ProductService productService;
     private final TypeProductService typeProductService;
+    private final UploadFileService uploadFileService;
 
-    public TypeServiceImpl(TypeRepository typeRepository, ProductService productService, TypeProductService typeProductService) {
+    public TypeServiceImpl(TypeRepository typeRepository, ProductService productService, TypeProductService typeProductService, UploadFileService uploadFileService) {
         this.typeRepository = typeRepository;
         this.productService = productService;
         this.typeProductService = typeProductService;
+        this.uploadFileService = uploadFileService;
     }
 
 
@@ -110,6 +110,9 @@ public class TypeServiceImpl implements TypeService {
         TypeEntity typeEntity = typeRepository.getOne(id);
 
         TypeDTO typeDTO = TypeMapper.INSTANCE.mapTypeEntityToDto(typeEntity);
+        typeDTO.getProducts().forEach(p->{
+            p.setPhotos(uploadFileService.getAllPhotosForProduct(p.getId()));
+        });
         System.out.println(typeDTO);
         return typeDTO;
     }

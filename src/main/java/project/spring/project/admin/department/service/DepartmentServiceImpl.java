@@ -81,7 +81,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 //        categoryDTOS.forEach(c->categoriesToBeRemoved.add(c.getId()));
 //        categoriesToBeRemoved.removeAll(categoryIds);
 //        categoriesToBeRemoved.forEach(cId ->{
-//            DepartmentCategoryPK departmentCategoryPK = new DepartmentCategoryPK();
+//            CategoryTypePK departmentCategoryPK = new CategoryTypePK();
 //            departmentCategoryPK.setCategoryId(cId);
 //            departmentCategoryPK.setDepartmentId(departmentDTO.getId());
 //            departmentCategoryService.deleteById(departmentCategoryPK);

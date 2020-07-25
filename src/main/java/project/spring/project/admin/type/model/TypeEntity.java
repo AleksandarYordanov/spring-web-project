@@ -33,6 +33,11 @@ public class TypeEntity {
             inverseJoinColumns = @JoinColumn(referencedColumnName = "id", name = "productId"))
     private List<ProductEntity> products;
 
+    @ManyToMany
+    @JoinTable( name = "categories_types",
+            joinColumns = @JoinColumn(referencedColumnName = "id", name = "typeId"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "id", name = "categoryId"))
+    private List<CategoryEntity> categories;
 
     public Long getId() {
         return id;
@@ -72,5 +77,13 @@ public class TypeEntity {
 
     public void setProducts(List<ProductEntity> products) {
         this.products = products;
+    }
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryEntity> categories) {
+        this.categories = categories;
     }
 }

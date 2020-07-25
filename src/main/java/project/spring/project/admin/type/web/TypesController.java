@@ -38,13 +38,13 @@ public class TypesController {
     }
 
     @PostMapping("details/{id}")
-    public String departmentDetailsSave(@ModelAttribute TypeDTO typeDTO, @RequestParam("categoryId") List<Long> productsIds
+    public String departmentDetailsSave(@ModelAttribute TypeDTO typeDTO, @RequestParam("typeId") List<Long> typesIds
             , @PathVariable(value="id") Long id) {
         typeDTO.setId(id);
 
         try {
 
-            typeService.update(typeDTO,productsIds);
+            typeService.update(typeDTO,typesIds);
             return "redirect:/admin/types/" ;
         } catch (Exception ex) {
             return "redirect:/admin/types/";
@@ -68,11 +68,11 @@ public class TypesController {
     }
 
     @PostMapping("/create")
-    public String createDepartment(@ModelAttribute TypeDTO typeDTO, @RequestParam("productId") List<Long> productIds) {
+    public String createDepartment(@ModelAttribute TypeDTO typeDTO, @RequestParam("productId") List<Long> typeIds) {
 
         try {
 
-            typeService.create(typeDTO,productIds);
+            typeService.create(typeDTO,typeIds);
             return "redirect:/admin/types/" ;
         } catch (Exception ex) {
             return "redirect:/admin/types/";
