@@ -1,6 +1,5 @@
-package project.spring.project.admin.connectionEntities.departmentCategory;
+package project.spring.project.admin.connectionEntities.departmentCategory.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;

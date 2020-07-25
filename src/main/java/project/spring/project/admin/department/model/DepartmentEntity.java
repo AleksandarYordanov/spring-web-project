@@ -85,4 +85,12 @@ public class DepartmentEntity {
     public void setCategories(List<CategoryEntity> categories) {
         this.categories = categories;
     }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
 }

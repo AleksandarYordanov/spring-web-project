@@ -1,7 +1,4 @@
-package project.spring.project.admin.connectionEntities.departmentCategory;
-
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
+package project.spring.project.admin.connectionEntities.departmentCategory.model;
 
 public class DepartmentCategoryDTO {
 

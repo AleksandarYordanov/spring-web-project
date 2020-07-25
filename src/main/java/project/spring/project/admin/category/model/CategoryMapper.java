@@ -2,10 +2,10 @@ package project.spring.project.admin.category.model;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryEntity;
 import project.spring.project.admin.department.model.DepartmentDTO;
 import project.spring.project.admin.department.model.DepartmentEntity;
+
+import java.util.Set;
 
 
 @Mapper
@@ -13,9 +13,9 @@ public interface CategoryMapper {
 
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
-    DepartmentEntity mapDepartmentDtoToEntity(DepartmentDTO dto);
+    Set<DepartmentEntity> mapDepartmentDtoToEntity(Set<DepartmentDTO> dto);
 
-    DepartmentDTO mapDepartmentEntityToDto(DepartmentEntity entity);
+    Set<DepartmentDTO> mapDepartmentEntityToDto(Set<DepartmentEntity> entity);
 
 
     CategoryEntity mapCategoryDtoToEntity(CategoryDTO dto);

@@ -1,8 +1,6 @@
 package project.spring.project.admin.category.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryEntity;
 import project.spring.project.admin.department.model.DepartmentDTO;
 
 import java.sql.Timestamp;

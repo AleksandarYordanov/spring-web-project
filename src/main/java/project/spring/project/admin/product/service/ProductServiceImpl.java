@@ -7,6 +7,7 @@ import project.spring.project.admin.product.model.ProductEntity;
 import project.spring.project.admin.product.model.ProductMapper;
 import project.spring.project.admin.product.repository.ProductRepository;
 import project.spring.project.admin.utils.fileUpload.UploadFileDTO;
+import project.spring.project.admin.utils.fileUpload.UploadFileEntity;
 import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTO> getAll() {
+
+
+
         List<ProductDTO> productDTOList = productRepository.
                 findAll().
                 stream().
@@ -34,9 +38,7 @@ public class ProductServiceImpl implements ProductService {
                 collect(Collectors.toList());
 
         productDTOList.forEach(p -> {
-            List<UploadFileDTO> photos;
-           photos = uploadFileService.getAllPhotosForProduct(p.getId());
-           p.setPhotos(photos);
+          p.setPhotos( uploadFileService.getAllPhotosForProduct(p.getId()));
         });
 
         return productDTOList;

@@ -1,10 +1,7 @@
-package project.spring.project.admin.connectionEntities.departmentCategory;
+package project.spring.project.admin.connectionEntities.departmentCategory.model;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import project.spring.project.admin.product.model.ProductDTO;
-import project.spring.project.admin.product.model.ProductEntity;
-import project.spring.project.admin.product.model.ProductMapper;
 
 @Mapper
 public interface DepartmentCategoryMapper {

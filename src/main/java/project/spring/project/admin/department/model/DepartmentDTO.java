@@ -4,13 +4,10 @@ package project.spring.project.admin.department.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import project.spring.project.admin.category.model.CategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryEntity;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -24,6 +21,7 @@ public class DepartmentDTO {
     private boolean active;
     private Timestamp addedDate;
     private Integer position;
+    private List<CategoryDTO> categories;
 
     public Integer getPosition() {
         return position;
@@ -33,7 +31,8 @@ public class DepartmentDTO {
         this.position = position;
     }
 
-    private Set<CategoryDTO> categoryDTOS = new HashSet<CategoryDTO>();
+
+
 
     public Long getId() {
         return id;
@@ -75,11 +74,12 @@ public class DepartmentDTO {
         this.id = id;
     }
 
-    public Set<CategoryDTO> getCategoryDTOS() {
-        return categoryDTOS;
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
     }
 
-    public void setCategoryDTOS(Set<CategoryDTO> categoryDTOS) {
-        this.categoryDTOS = categoryDTOS;
+    public void setCategories(List<CategoryDTO> categories) {
+        this.categories = categories;
     }
 }

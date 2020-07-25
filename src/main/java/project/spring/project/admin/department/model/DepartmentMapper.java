@@ -4,19 +4,21 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.category.model.CategoryEntity;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryDTO;
-import project.spring.project.admin.connectionEntities.departmentCategory.DepartmentCategoryEntity;
-import project.spring.project.admin.product.model.ProductDTO;
-import project.spring.project.admin.product.model.ProductEntity;
+
+import java.util.List;
 
 @Mapper
 public interface DepartmentMapper {
 
     DepartmentMapper INSTANCE = Mappers.getMapper(DepartmentMapper.class);
 
-    CategoryEntity mapCategoryDtoToEntity(CategoryDTO dto);
+    List<CategoryEntity> mapCategoriesDtoListToEntity(List<CategoryDTO> categories);
 
-    CategoryDTO mapCategoryEntityToDto(CategoryEntity entity);
+    List<CategoryDTO> mapCategoriesEntityListToDto(List<CategoryEntity> categories);
+
+    CategoryEntity mapCategoryDtoToEntity(CategoryDTO category);
+
+    CategoryDTO mapCategoryEntityToDto(CategoryEntity category);
 
     DepartmentEntity mapDepartmentDtoToEntity(DepartmentDTO dto);
 

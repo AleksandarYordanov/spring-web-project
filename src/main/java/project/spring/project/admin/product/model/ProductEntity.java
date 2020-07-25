@@ -5,6 +5,7 @@ import project.spring.project.admin.utils.fileUpload.UploadFileEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -40,6 +41,8 @@ public class ProductEntity {
     @Column
     @Lob
     private String description;
+
+
 
     public Long getId() {
         return id;
@@ -112,4 +115,5 @@ public class ProductEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

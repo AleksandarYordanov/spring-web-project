@@ -9,4 +9,10 @@ public interface DepartmentService {
     void create(DepartmentDTO departmentDTO);
 
     void create(DepartmentDTO department, List<Long> categoryIds);
+
+    DepartmentDTO getById(Long id);
+
+    void deleteById(Long id);
+
+    void update(DepartmentDTO department, List<Long> categoryIds);
 }

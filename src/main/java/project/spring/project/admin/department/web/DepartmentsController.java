@@ -18,17 +18,35 @@ public class DepartmentsController {
     private final DepartmentService departmentService;
     private final CategoryService categoryService;
 
+
     public DepartmentsController(DepartmentService departmentService, CategoryService categoryService) {
         this.departmentService = departmentService;
         this.categoryService = categoryService;
     }
 
     @GetMapping("details/{id}")
-    public ModelAndView departmentDetails(Model model) {
-        ModelAndView modelAndView = new ModelAndView("admin/department/departments");
-        List<DepartmentDTO>  departmentDTOS =departmentService.getAll();
-        modelAndView.addObject(departmentDTOS);
+    public ModelAndView departmentDetails(@PathVariable(value="id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("admin/department/department-details");
+       DepartmentDTO department = departmentService.getById(id);
+        modelAndView.addObject(department);
+        List<CategoryDTO> allCategories = categoryService.getAll();
+        modelAndView.addObject("allCategories",allCategories);
+        modelAndView.addObject(id);
         return modelAndView;
+    }
+
+    @PostMapping("details/{id}")
+    public String departmentDetailsSave(@ModelAttribute DepartmentDTO department,@RequestParam("categoryId") List<Long> categoryIds
+            ,@PathVariable(value="id") Long id) {
+        department.setId(id);
+
+        try {
+
+            departmentService.update(department,categoryIds);
+            return "redirect:/admin/departments/" ;
+        } catch (Exception ex) {
+            return "redirect:/admin/departments/";
+        }
     }
 
     @GetMapping()
@@ -53,6 +71,19 @@ public class DepartmentsController {
         try {
 
             departmentService.create(department,categoryIds);
+            return "redirect:/admin/departments/" ;
+        } catch (Exception ex) {
+            return "redirect:/admin/departments/";
+        }
+    }
+
+    @GetMapping("delete/{id}")
+    public String departmentDelete(@PathVariable(value="id") Long id) {
+
+
+        try {
+
+            departmentService.deleteById(id);
             return "redirect:/admin/departments/" ;
         } catch (Exception ex) {
             return "redirect:/admin/departments/";

@@ -1,7 +1,4 @@
-package project.spring.project.admin.connectionEntities.departmentCategory;
-
-import project.spring.project.admin.category.model.CategoryEntity;
-import project.spring.project.admin.department.model.DepartmentEntity;
+package project.spring.project.admin.connectionEntities.departmentCategory.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

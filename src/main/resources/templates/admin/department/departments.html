@@ -46,7 +46,7 @@
                             <div class="card-body">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <a th:href="@{departments/create}" class="btn btn-danger mb-2"><i
+                                        <a th:href="@{'~/admin/departments/create/'}" class="btn btn-danger mb-2"><i
                                                 class="mdi mdi-plus-circle mr-2"></i> Create Department</a>
                                     </div>
                                     <div class="col-sm-8">
@@ -81,7 +81,7 @@
 
                                                     <!--Main Category Name-->
                                                     <p class="m-0 d-inline-block align-middle font-16">
-                                                        <a th:text="${department.getName()}" href="apps-ecommerce-departments-details.html"
+                                                        <a th:text="${department.getName()}" th:href="@{'~/admin/departments/details/' + ${department.getId()}}"
                                                            class="text-body"></a>
                                                     </p>
                                                 </td>
@@ -104,11 +104,9 @@
                                                 </td>
                                                 <!--Actions-->
                                                 <td class="table-action">
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                   <a th:href="@{'~/admin/departments/details/' + ${department.getId()}}" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                    <a th:href="@{'~/admin/departments/delete/' + ${department.getId()}}" class="action-icon"> <i
                                                             class="mdi mdi-delete"></i></a>
                                                 </td>
                                             </tr>

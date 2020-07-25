@@ -76,7 +76,7 @@
                                         <th:block th:each="product : ${allProducts}">
                                         <tr>
                                             <td>
-                                                <img th:src="${product.photos[0].location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
+                                                <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
                                                 <p class="m-0 d-inline-block align-middle font-16">
                                                     <a href="apps-ecommerce-products-details.html" class="text-body">Amazing Modern Chair</a>
                                                     <br/>
