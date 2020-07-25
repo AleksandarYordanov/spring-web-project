@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:include="~{admin/fragments/left-sidebar}"></th:block>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Topbar Start -->
+            <th:block th:include="~{admin/fragments/top-bar}"></th:block>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                    <li class="breadcrumb-item active">Products</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Products</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <a th:href="@{'~/admin/types/create/'}" class="btn btn-danger mb-2"><i
+                                                class="mdi mdi-plus-circle mr-2"></i> Create Type</a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="text-sm-right">
+                                            <button type="button" class="btn btn-success mb-2 mr-1"><i
+                                                    class="mdi mdi-settings"></i></button>
+                                            <button type="button" class="btn btn-light mb-2 mr-1">Import</button>
+                                            <button type="button" class="btn btn-light mb-2">Export</button>
+                                        </div>
+                                    </div><!-- end col-->
+                                </div>
+
+
+                                <div class="table-responsive">
+                                    <table id="scroll-vertical-datatable" class="table dt-responsive nowrap">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th class="all">Type</th>
+                                            <th>Status</th>
+                                            <th>Added Date</th>
+                                            <th style="width: 85px;">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="type : ${typeDTOList}">
+                                            <tr>
+                                                <!--Main Category-->
+                                                <td>
+
+
+                                                    <!--Main Category Name-->
+                                                    <p class="m-0 d-inline-block align-middle font-16">
+                                                        <a th:text="${type.getName()}" th:href="@{'~/admin/types/details/' + ${type.getId()}}"
+                                                           class="text-body"></a>
+                                                    </p>
+                                                </td>
+                                                <!--Active-->
+                                                <td>
+                                                    <div th:if="${type.active}">
+                                                        <span class="badge badge-success">Active</span>
+                                                    </div>
+                                                    <div th:unless="${type.active}">
+                                                        <span class="badge badge-danger">Disabled</span>
+                                                    </div>
+                                                </td>
+                                                <!--Added Date-->
+                                                <td>
+                                                   <p th:text="${type.getAddedDate()}"></p>
+                                                </td>
+                                                <!--Actions-->
+                                                <td class="table-action">
+                                                   <a th:href="@{'~/admin/types/details/' + ${type.getId()}}" class="action-icon"> <i
+                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a th:href="@{'~/admin/types/delete/' + ${type.getId()}}" class="action-icon"> <i
+                                                            class="mdi mdi-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <th:block th:include="~{admin/fragments/footer}"></th:block>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+
+
+<!-- bundle -->
+<th:block th:include="~{admin/fragments/bottomjs}"></th:block>
+<!-- end demo js-->
+
+</body>
+
+</html>
