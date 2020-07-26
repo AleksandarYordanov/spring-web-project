@@ -52,7 +52,7 @@
                                 <!--Category Name-->
                                 <div class="form-group">
                                     <label for="validationCustom01">Name</label>
-                                    <input th:value="${departmentDTO.getName()}" type="text" id="validationCustom01" class="form-control"
+                                    <input th:value="${departmentChildDTO.getName()}" type="text" id="validationCustom01" class="form-control"
                                            name="name"
                                            placeholder="Enter category name">
                                 </div>
@@ -60,7 +60,7 @@
                                 <!-- Multiple Select for icons -->
                                 <div class="form-group">
                                     <label>Department Icon</label>
-                                    <input th:value="${departmentDTO.getIcon()}" type="text" class=" form-control use-material-icon-picker"
+                                    <input th:value="${departmentChildDTO.getIcon()}" type="text" class=" form-control use-material-icon-picker"
                                            name="icon">
                                 </div>
 
@@ -76,7 +76,7 @@
                                 <!--Category Position-->
                                 <div class="form-group">
                                     <label>Position</label>
-                                    <input th:value="${departmentDTO.getPosition()}" name="position" type="text" class="form-control" maxlength="25"
+                                    <input th:value="${departmentChildDTO.getPosition()}" name="position" type="text" class="form-control" maxlength="25"
                                            data-toggle="maxlength">
                                 </div>
 
@@ -99,7 +99,7 @@
                                         </thead>
                                         <tbody data-plugin="dragula" class="with-position category-table">
                                         <tr></tr>
-                                        <th:block th:each="category : ${departmentDTO.getCategories()}">
+                                        <th:block th:each="category : ${departmentChildDTO.getCategories()}">
                                         <tr>
                                             <td th:text="${category.getName()}">Iphone</td>
                                             <td>

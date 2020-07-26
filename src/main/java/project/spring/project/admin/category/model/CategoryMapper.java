@@ -4,10 +4,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import project.spring.project.admin.department.model.DepartmentDTO;
 import project.spring.project.admin.department.model.DepartmentEntity;
-import project.spring.project.admin.product.model.ProductMapper;
 import project.spring.project.admin.type.model.TypeDTO;
 import project.spring.project.admin.type.model.TypeEntity;
-import project.spring.project.admin.type.model.TypeMapper;
+import project.spring.project.admin.type.model.TypeSelfDTO;
 
 import java.util.List;
 
@@ -16,15 +15,6 @@ import java.util.List;
 public interface CategoryMapper  {
 
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
-
-    //department
-   List<DepartmentEntity> mapDepartmentDtoListToEntity(List<DepartmentDTO> dto);
-
-   List<DepartmentDTO> mapDepartmentEntityListToDto(List<DepartmentEntity> entity);
-
-    DepartmentEntity mapDepartmentDtoToEntity(DepartmentDTO departmentDTO);
-
-    DepartmentDTO mapDepartmentDtoToEntity(DepartmentEntity departmentEntity);
 
     //type
    List<TypeEntity> mapTypeDtoListToEntity(List<TypeDTO> dto);
@@ -35,8 +25,27 @@ public interface CategoryMapper  {
 
     TypeDTO mapTypeEntityToDto(TypeEntity typeEntity);
 
+    //typeSelf
+    List<TypeEntity> mapTypeDtoSelfListToEntity(List<TypeSelfDTO> dto);
+
+    List<TypeSelfDTO> mapTypeEntityListToSelfDto(List<TypeEntity> entity);
+
+    TypeEntity mapTypeDtoToEntity(TypeSelfDTO typeDTO);
+
+    TypeSelfDTO mapTypeEntityToSelfDto(TypeEntity typeEntity);
+
     //category
     CategoryEntity mapCategoryDtoToEntity(CategoryDTO dto);
 
     CategoryDTO mapCategoryEntityToDto(CategoryEntity entity);
+
+    //categoryChild
+    CategoryEntity mapCategoryChildDtoToEntity(CategoryChildDTO dto);
+
+    CategoryChildDTO mapCategoryEntityToChildDto(CategoryEntity entity);
+
+    //categorySelf
+    CategoryEntity mapCategorySelfDtoToEntity(CategorySelfDTO dto);
+
+    CategorySelfDTO mapCategoryEntityToSelfDto(CategoryEntity entity);
 }

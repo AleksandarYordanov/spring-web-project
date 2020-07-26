@@ -21,4 +21,6 @@ public interface UploadFileMapper {
 
     UploadFileDTO mapUploadFileEntityToDto(UploadFileEntity entity);
 
+    UploadFileSelfDTO mapUploadFileEntityToSelfDTO(UploadFileEntity entity);
+
 }

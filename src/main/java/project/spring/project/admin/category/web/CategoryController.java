@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import project.spring.project.admin.category.model.CategoryChildDTO;
+import project.spring.project.admin.category.model.CategorySelfDTO;
 import project.spring.project.admin.category.service.CategoryService;
 import project.spring.project.admin.category.model.CategoryDTO;
+import project.spring.project.admin.type.model.TypeChildDTO;
 import project.spring.project.admin.type.model.TypeDTO;
 import project.spring.project.admin.type.service.TypeService;
 
@@ -27,16 +30,16 @@ public class CategoryController {
     @GetMapping("details/{id}")
     public ModelAndView categoryDetails(@PathVariable(value="id") Long id) {
         ModelAndView modelAndView = new ModelAndView("admin/category/category-details");
-        CategoryDTO category = categoryService.getById(id);
+        CategoryChildDTO category = categoryService.getById(id);
         modelAndView.addObject(category);
-        List<TypeDTO> allTypes = typeService.getAll();
+        List<TypeChildDTO> allTypes = typeService.getAll();
         modelAndView.addObject("allTypes",allTypes);
         modelAndView.addObject(id);
         return modelAndView;
     }
 
     @PostMapping("details/{id}")
-    public String departmentDetailsSave(@ModelAttribute CategoryDTO categoryDTO, @RequestParam("typeId") List<Long> typesIds
+    public String departmentDetailsSave(@ModelAttribute CategorySelfDTO categoryDTO, @RequestParam("typeId") List<Long> typesIds
             , @PathVariable(value="id") Long id) {
         categoryDTO.setId(id);
 
@@ -52,7 +55,7 @@ public class CategoryController {
     @GetMapping()
     public ModelAndView department(Model model) {
         ModelAndView modelAndView = new ModelAndView("admin/category/categories");
-        List<CategoryDTO>  categoryDTOS =categoryService.getAll();
+        List<CategoryChildDTO>  categoryDTOS =categoryService.getAll();
         modelAndView.addObject(categoryDTOS);
         return modelAndView;
     }
@@ -60,20 +63,20 @@ public class CategoryController {
     @GetMapping("/create")
     public ModelAndView departmentAdd() {
         ModelAndView modelAndView  = new ModelAndView("admin/category/category-create");
-        List<TypeDTO> allTypes = typeService.getAll();
+        List<TypeChildDTO> allTypes = typeService.getAll();
         modelAndView.addObject("allTypes",allTypes);
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public String createDepartment(@ModelAttribute CategoryDTO categoryDTO, @RequestParam("typeId") List<Long> typeIds) {
+    public String createDepartment(@ModelAttribute CategorySelfDTO categoryDTO, @RequestParam("typeId") List<Long> typeIds) {
 
         try {
 
             categoryService.create(categoryDTO,typeIds);
-            return "redirect:/admin/category/categories";
+            return "redirect:/admin/categories";
         } catch (Exception ex) {
-            return "redirect:/admin/category/categories";
+            return "redirect:/admin/categories";
         }
     }
 

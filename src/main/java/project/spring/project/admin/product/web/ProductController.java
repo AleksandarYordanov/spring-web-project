@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import project.spring.project.admin.product.model.ProductChildDTO;
 import project.spring.project.admin.product.model.ProductDTO;
 import project.spring.project.admin.product.service.ProductService;
 import project.spring.project.admin.utils.googleCloudStorage.GoogleCloudStorageServiceImpl;
@@ -38,7 +39,7 @@ public class ProductController {
 
         ModelAndView modelAndView  = new ModelAndView("admin/products/products");
 
-        List<ProductDTO> allProducts = productService.getAll();
+        List<ProductChildDTO> allProducts = productService.getAll();
 
         modelAndView.addObject("allProducts",allProducts);
         return modelAndView;

@@ -52,7 +52,7 @@
                                 <!--Category Name-->
                                 <div class="form-group">
                                     <label for="validationCustom01">Name</label>
-                                    <input th:value="${categoryDTO.getName()}" type="text" id="validationCustom01" class="form-control"
+                                    <input th:value="${categoryChildDTO.getName()}" type="text" id="validationCustom01" class="form-control"
                                            name="name"
                                            placeholder="Enter category name">
                                 </div>
@@ -87,7 +87,7 @@
                                         </thead>
                                         <tbody data-plugin="dragula" class="with-position category-table">
                                         <tr></tr>
-                                        <th:block th:each="type : ${categoryDTO.getTypes()}">
+                                        <th:block th:each="type : ${categoryChildDTO.getTypes()}">
                                             <tr>
                                                 <td th:text="${type.getName()}">Iphone</td>
                                                 <td>

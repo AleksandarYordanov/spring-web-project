@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.category.service.CategoryService;
+import project.spring.project.admin.product.model.ProductChildDTO;
 import project.spring.project.admin.product.model.ProductDTO;
 import project.spring.project.admin.product.service.ProductService;
+import project.spring.project.admin.type.model.TypeChildDTO;
 import project.spring.project.admin.type.model.TypeDTO;
+import project.spring.project.admin.type.model.TypeSelfDTO;
 import project.spring.project.admin.type.service.TypeService;
 
 import java.util.List;
@@ -29,22 +32,22 @@ public class TypesController {
     @GetMapping("details/{id}")
     public ModelAndView typeDetails(@PathVariable(value="id") Long id) {
         ModelAndView modelAndView = new ModelAndView("admin/type/type-details");
-       TypeDTO type = typeService.getById(id);
+       TypeChildDTO type = typeService.getById(id);
         modelAndView.addObject(type);
-        List<ProductDTO> allProducts = productService.getAll();
+        List<ProductChildDTO> allProducts = productService.getAll();
         modelAndView.addObject("allProducts",allProducts);
         modelAndView.addObject(id);
         return modelAndView;
     }
 
     @PostMapping("details/{id}")
-    public String departmentDetailsSave(@ModelAttribute TypeDTO typeDTO, @RequestParam("typeId") List<Long> typesIds
+    public String departmentDetailsSave(@ModelAttribute TypeSelfDTO typeSelfDTO, @RequestParam("productId") List<Long> productId
             , @PathVariable(value="id") Long id) {
-        typeDTO.setId(id);
+        typeSelfDTO.setId(id);
 
         try {
 
-            typeService.update(typeDTO,typesIds);
+            typeService.update(typeSelfDTO,productId);
             return "redirect:/admin/types/" ;
         } catch (Exception ex) {
             return "redirect:/admin/types/";
@@ -54,7 +57,7 @@ public class TypesController {
     @GetMapping()
     public ModelAndView department(Model model) {
         ModelAndView modelAndView = new ModelAndView("admin/type/types");
-       List<TypeDTO>  typeDTOS =typeService.getAll();
+       List<TypeChildDTO>  typeDTOS =typeService.getAll();
        modelAndView.addObject(typeDTOS);
        return modelAndView;
     }
@@ -62,17 +65,17 @@ public class TypesController {
     @GetMapping("/create")
     public ModelAndView departmentAdd() {
         ModelAndView modelAndView  = new ModelAndView("admin/type/type-create");
-        List<ProductDTO> allProducts = productService.getAll();
+        List<ProductChildDTO> allProducts = productService.getAll();
         modelAndView.addObject("allProducts",allProducts);
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public String createDepartment(@ModelAttribute TypeDTO typeDTO, @RequestParam("productId") List<Long> typeIds) {
+    public String createDepartment(@ModelAttribute TypeSelfDTO typeSelfDTO, @RequestParam("productId") List<Long> productId) {
 
         try {
 
-            typeService.create(typeDTO,typeIds);
+            typeService.create(typeSelfDTO,productId );
             return "redirect:/admin/types/" ;
         } catch (Exception ex) {
             return "redirect:/admin/types/";

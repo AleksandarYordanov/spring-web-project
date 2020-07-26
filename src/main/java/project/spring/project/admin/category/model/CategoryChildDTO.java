@@ -1,31 +1,17 @@
 package project.spring.project.admin.category.model;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import project.spring.project.admin.department.model.DepartmentDTO;
+
 import project.spring.project.admin.type.model.TypeDTO;
-import project.spring.project.admin.type.model.TypeEntity;
+import project.spring.project.admin.type.model.TypeSelfDTO;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CategoryDTO {
-
+public class CategoryChildDTO {
     private Long id;
-
     private String name;
-
     private boolean active;
-
     private Timestamp addedDate;
-
-    private List<TypeDTO> types;
-
-
-
+    private List<TypeSelfDTO> types;
 
     public Long getId() {
         return id;
@@ -59,14 +45,11 @@ public class CategoryDTO {
         this.addedDate = addedDate;
     }
 
-
-    public List<TypeDTO> getTypes() {
+    public List<TypeSelfDTO> getTypes() {
         return types;
     }
 
-    public void setTypes(List<TypeDTO> types) {
+    public void setTypes(List<TypeSelfDTO> types) {
         this.types = types;
     }
-
-
 }

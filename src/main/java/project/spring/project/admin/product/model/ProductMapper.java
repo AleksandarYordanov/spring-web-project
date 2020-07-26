@@ -24,4 +24,7 @@ public interface ProductMapper {
 
     ProductDTO mapProductEntityToDto(ProductEntity entity);
 
+    ProductEntity mapProductChildDtoToEntity(ProductChildDTO dto);
+
+    ProductChildDTO mapProductEntityToChildDto(ProductEntity entity);
 }

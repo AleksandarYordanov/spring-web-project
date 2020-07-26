@@ -1,18 +1,21 @@
 package project.spring.project.admin.department.service;
 
+import project.spring.project.admin.department.model.DepartmentChildDTO;
 import project.spring.project.admin.department.model.DepartmentDTO;
+import project.spring.project.admin.department.model.DepartmentSelfDTO;
 
 import java.util.List;
 
 public interface DepartmentService {
-    List<DepartmentDTO> getAll();
-    void create(DepartmentDTO departmentDTO);
+    List<DepartmentChildDTO> getAll();
 
-    void create(DepartmentDTO department, List<Long> categoryIds);
+    void create(DepartmentSelfDTO departmentSelfDTO);
 
-    DepartmentDTO getById(Long id);
+    void create(DepartmentSelfDTO departmentSelfDTO, List<Long> categoryIds);
+
+    DepartmentChildDTO getById(Long id);
 
     void deleteById(Long id);
 
-    void update(DepartmentDTO department, List<Long> categoryIds);
+    void update(DepartmentSelfDTO departmentSelfDTO, List<Long> categoryIds);
 }

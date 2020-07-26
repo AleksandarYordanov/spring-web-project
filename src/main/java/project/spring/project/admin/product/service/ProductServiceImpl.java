@@ -2,12 +2,12 @@ package project.spring.project.admin.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.spring.project.admin.product.model.ProductChildDTO;
 import project.spring.project.admin.product.model.ProductDTO;
 import project.spring.project.admin.product.model.ProductEntity;
 import project.spring.project.admin.product.model.ProductMapper;
 import project.spring.project.admin.product.repository.ProductRepository;
 import project.spring.project.admin.utils.fileUpload.UploadFileDTO;
-import project.spring.project.admin.utils.fileUpload.UploadFileEntity;
 import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
 import java.util.List;
@@ -27,21 +27,18 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductDTO> getAll() {
+    public List<ProductChildDTO> getAll() {
 
-
-
-        List<ProductDTO> productDTOList = productRepository.
+        List<ProductChildDTO> productChildDTOList = productRepository.
                 findAll().
                 stream().
-                map(ProductMapper.INSTANCE::mapProductEntityToDto).
+                map(ProductMapper.INSTANCE::mapProductEntityToChildDto).
                 collect(Collectors.toList());
 
-        productDTOList.forEach(p -> {
+        productChildDTOList.forEach(p -> {
           p.setPhotos( uploadFileService.getAllPhotosForProduct(p.getId()));
         });
-
-        return productDTOList;
+        return productChildDTOList;
     }
 
     @Override

@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import project.spring.project.admin.connectionEntities.typeProduct.model.TypeProductDTO;
 import project.spring.project.admin.connectionEntities.typeProduct.model.TypeProductPK;
 import project.spring.project.admin.connectionEntities.typeProduct.service.TypeProductService;
-import project.spring.project.admin.product.model.ProductDTO;
+import project.spring.project.admin.product.model.ProductEntity;
 import project.spring.project.admin.product.service.ProductService;
-import project.spring.project.admin.type.model.TypeDTO;
-import project.spring.project.admin.type.model.TypeEntity;
-import project.spring.project.admin.type.model.TypeMapper;
+import project.spring.project.admin.type.model.*;
 import project.spring.project.admin.type.repository.TypeRepository;
 import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
@@ -22,56 +20,54 @@ import java.util.stream.Collectors;
 public class TypeServiceImpl implements TypeService {
 
     private final TypeRepository typeRepository;
-    private final ProductService productService;
+
     private final TypeProductService typeProductService;
     private final UploadFileService uploadFileService;
 
-    public TypeServiceImpl(TypeRepository typeRepository, ProductService productService, TypeProductService typeProductService, UploadFileService uploadFileService) {
+    public TypeServiceImpl(TypeRepository typeRepository, TypeProductService typeProductService, UploadFileService uploadFileService) {
         this.typeRepository = typeRepository;
-        this.productService = productService;
+
         this.typeProductService = typeProductService;
         this.uploadFileService = uploadFileService;
     }
 
 
     @Override
-    public List<TypeDTO> getAll() {
+    public List<TypeChildDTO> getAll() {
         return typeRepository.
                 findAll().
                 stream().
-                map(TypeMapper.INSTANCE::mapTypeEntityToDto).
+                map(TypeMapper.INSTANCE::mapTypeEntityToTypeChildDTO).
                 collect(Collectors.toList());
     }
 
-    @Override
-    public void create(TypeDTO typeDTO) {
 
-        TypeEntity typeEntity= TypeMapper.INSTANCE.mapTypeDtoToEntity(typeDTO);
-       typeRepository.save(typeEntity);
+
+    @Override
+    public void create(TypeSelfDTO type) {
+        TypeEntity typeEntity= TypeMapper.INSTANCE.mapTypeSelfDTOToTypeEntity(type);
+        typeRepository.save(typeEntity);
     }
 
     @Override
-    public void create(TypeDTO type, List<Long> productIds) {
-
-
-
-        TypeEntity typeEntity= TypeMapper.INSTANCE.mapTypeDtoToEntity(type);
+    public void create(TypeSelfDTO type, List<Long> productIds) {
+        TypeEntity typeEntity= TypeMapper.INSTANCE.mapTypeSelfDTOToTypeEntity(type);
         typeEntity = typeRepository.save(typeEntity);
-        TypeDTO typeDTO = TypeMapper.INSTANCE.mapTypeEntityToDto(typeEntity);
-        typeDTO =  setProductsAndReturnDTO(productIds, typeDTO);
+
+        setProductsAndReturnEntity(productIds, typeEntity);
     }
 
-    private TypeDTO setProductsAndReturnDTO(List<Long> productsIds, TypeDTO typeDTO) {
-        if (typeDTO.getProducts() == null){
-          return   setProductsEntityNoProducts(productsIds,typeDTO);
+    private TypeEntity setProductsAndReturnEntity(List<Long> productsIds, TypeEntity type) {
+        if (type.getProducts() == null){
+          return   setProductsEntityNoProducts(productsIds,type);
         }else {
-          return   setProductsEntityWithProducts(productsIds,typeDTO);
+          return   setProductsEntityWithProducts(productsIds,type);
         }
 
     }
 
-    private TypeDTO setProductsEntityWithProducts(List<Long> productsIds, TypeDTO typeDTO) {
-        List<ProductDTO> currentProducts = typeDTO.getProducts();
+    private TypeEntity setProductsEntityWithProducts(List<Long> productsIds, TypeEntity type) {
+        List<ProductEntity> currentProducts = type.getProducts();
         List<Long> currentProductsIds = new ArrayList<>();
         currentProducts.forEach(p -> currentProductsIds.add(p.getId()));
         //ids to be removed;
@@ -80,14 +76,14 @@ public class TypeServiceImpl implements TypeService {
          currentProductsIds.forEach(id ->{
              TypeProductPK typeProductPK = new TypeProductPK();
              typeProductPK.setProductId(id);
-             typeProductPK.setTypeId(typeDTO.getId());
+             typeProductPK.setTypeId(type.getId());
              typeProductService.deleteById(typeProductPK);
          });
 
-       return   setProductsEntityNoProducts(productsIds,typeDTO);
+       return   setProductsEntityNoProducts(productsIds,type);
     }
 
-    private TypeDTO setProductsEntityNoProducts(List<Long> productsIds, TypeDTO typeDTO) {
+    private TypeEntity setProductsEntityNoProducts(List<Long> productsIds, TypeEntity typeDTO) {
 
         TypeProductDTO typeProductDTO = new TypeProductDTO();
         TypeProductPK typeProductPK = new TypeProductPK();
@@ -100,21 +96,22 @@ public class TypeServiceImpl implements TypeService {
             typeProductDTO.setPosition(i);
             typeProductService.create(typeProductDTO);
         }
-        return getById(typeDTO.getId());
+        return  typeRepository.getOne(typeDTO.getId());
     }
 
 
 
     @Override
-    public TypeDTO getById(Long id) {
+    public TypeChildDTO getById(Long id) {
         TypeEntity typeEntity = typeRepository.getOne(id);
 
-        TypeDTO typeDTO = TypeMapper.INSTANCE.mapTypeEntityToDto(typeEntity);
-        typeDTO.getProducts().forEach(p->{
+        TypeChildDTO typeChildDTO = TypeMapper.INSTANCE.mapTypeEntityToTypeChildDTO(typeEntity);
+        typeChildDTO.getProducts().forEach(p->{
             p.setPhotos(uploadFileService.getAllPhotosForProduct(p.getId()));
         });
-        System.out.println(typeDTO);
-        return typeDTO;
+
+        return typeChildDTO;
+
     }
 
     @Override
@@ -123,13 +120,15 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public void update(TypeDTO typeDTO, List<Long> categoryIds) {
+    public void update(TypeSelfDTO typeSelfDTO, List<Long> categoryIds) {
+            TypeEntity typeEntity = typeRepository.getOne(typeSelfDTO.getId());
 
-         typeDTO =    setProductsAndReturnDTO(categoryIds, typeDTO);
+            typeEntity.setName(typeSelfDTO.getName());
+            typeEntity.setActive(typeSelfDTO.isActive());
+            typeRepository.save(typeEntity);
 
-        TypeEntity typeEntity= TypeMapper.INSTANCE.mapTypeDtoToEntity(typeDTO);
-
-        typeRepository.save(typeEntity);
+            typeEntity  =    setProductsAndReturnEntity(categoryIds, typeEntity);
+            typeRepository.save(typeEntity);
     }
 
 

@@ -1,18 +1,16 @@
 package project.spring.project.admin.type.service;
 
+import project.spring.project.admin.type.model.TypeChildDTO;
 import project.spring.project.admin.type.model.TypeDTO;
+import project.spring.project.admin.type.model.TypeSelfDTO;
 
 import java.util.List;
 
 public interface TypeService {
-    List<TypeDTO> getAll();
-    void create(TypeDTO typeDTO);
-
-    void create(TypeDTO type, List<Long> productIds);
-
-    TypeDTO getById(Long id);
-
+    List<TypeChildDTO> getAll();
+    void create(TypeSelfDTO type);
+    void create(TypeSelfDTO type, List<Long> productIds);
+    TypeChildDTO getById(Long id);
     void deleteById(Long id);
-
-    void update(TypeDTO type, List<Long> productIds);
+    void update(TypeSelfDTO typeSelfDTO, List<Long> categoryIds);
 }

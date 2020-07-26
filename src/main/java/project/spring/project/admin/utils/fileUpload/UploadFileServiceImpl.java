@@ -1,7 +1,6 @@
 package project.spring.project.admin.utils.fileUpload;
 
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import project.spring.project.admin.product.model.ProductMapper;
 import project.spring.project.admin.product.repository.ProductRepository;
@@ -29,13 +28,13 @@ public class UploadFileServiceImpl implements UploadFileService {
     }
 
     @Override
-    public List<UploadFileDTO> getAllPhotosForProduct(Long productId) {
+    public List<UploadFileSelfDTO> getAllPhotosForProduct(Long productId) {
         return uploadFileRepository
                 .findByProductId(productId, PageRequest.of(0, 2)
 
                 )
                 .stream()
-                .map(UploadFileMapper.INSTANCE::mapUploadFileEntityToDto)
+                .map(UploadFileMapper.INSTANCE::mapUploadFileEntityToSelfDTO)
                 .collect(Collectors.toList());
     }
 

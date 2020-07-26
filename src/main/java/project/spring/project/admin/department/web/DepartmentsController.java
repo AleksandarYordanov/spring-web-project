@@ -4,9 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import project.spring.project.admin.category.model.CategoryChildDTO;
 import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.category.service.CategoryService;
+import project.spring.project.admin.department.model.DepartmentChildDTO;
 import project.spring.project.admin.department.model.DepartmentDTO;
+import project.spring.project.admin.department.model.DepartmentSelfDTO;
 import project.spring.project.admin.department.service.DepartmentService;
 
 import java.util.List;
@@ -27,16 +30,16 @@ public class DepartmentsController {
     @GetMapping("details/{id}")
     public ModelAndView departmentDetails(@PathVariable(value="id") Long id) {
         ModelAndView modelAndView = new ModelAndView("admin/department/department-details");
-       DepartmentDTO department = departmentService.getById(id);
+       DepartmentChildDTO department = departmentService.getById(id);
         modelAndView.addObject(department);
-        List<CategoryDTO> allCategories = categoryService.getAll();
+        List<CategoryChildDTO> allCategories = categoryService.getAll();
         modelAndView.addObject("allCategories",allCategories);
         modelAndView.addObject(id);
         return modelAndView;
     }
 
     @PostMapping("details/{id}")
-    public String departmentDetailsSave(@ModelAttribute DepartmentDTO department,@RequestParam("categoryId") List<Long> categoryIds
+    public String departmentDetailsSave(@ModelAttribute DepartmentSelfDTO department,@RequestParam("categoryId") List<Long> categoryIds
             ,@PathVariable(value="id") Long id) {
         department.setId(id);
 
@@ -52,7 +55,7 @@ public class DepartmentsController {
     @GetMapping()
     public ModelAndView department(Model model) {
         ModelAndView modelAndView = new ModelAndView("admin/department/departments");
-       List<DepartmentDTO>  departmentDTOS =departmentService.getAll();
+       List<DepartmentChildDTO>  departmentDTOS =departmentService.getAll();
        modelAndView.addObject(departmentDTOS);
        return modelAndView;
     }
@@ -60,13 +63,13 @@ public class DepartmentsController {
     @GetMapping("/create")
     public ModelAndView departmentAdd() {
         ModelAndView modelAndView  = new ModelAndView("admin/department/department-create");
-        List<CategoryDTO> allCategories = categoryService.getAll();
+        List<CategoryChildDTO> allCategories = categoryService.getAll();
         modelAndView.addObject("allCategories",allCategories);
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public String createDepartment(@ModelAttribute DepartmentDTO department,@RequestParam("categoryId") List<Long> categoryIds) {
+    public String createDepartment(@ModelAttribute DepartmentSelfDTO department,@RequestParam("categoryId") List<Long> categoryIds) {
 
         try {
 

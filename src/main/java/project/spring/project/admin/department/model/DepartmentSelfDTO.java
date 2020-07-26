@@ -1,31 +1,19 @@
-package project.spring.project.admin.category.model;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import project.spring.project.admin.department.model.DepartmentDTO;
-import project.spring.project.admin.type.model.TypeDTO;
-import project.spring.project.admin.type.model.TypeEntity;
+package project.spring.project.admin.department.model;
 
+import project.spring.project.admin.category.model.CategoryDTO;
+
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CategoryDTO {
-
+public class DepartmentSelfDTO {
     private Long id;
-
+    @NotBlank
     private String name;
-
+    private String icon;
     private boolean active;
-
     private Timestamp addedDate;
-
-    private List<TypeDTO> types;
-
-
-
+    private Integer position;
 
     public Long getId() {
         return id;
@@ -41,6 +29,14 @@ public class CategoryDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public boolean isActive() {
@@ -59,14 +55,11 @@ public class CategoryDTO {
         this.addedDate = addedDate;
     }
 
-
-    public List<TypeDTO> getTypes() {
-        return types;
+    public Integer getPosition() {
+        return position;
     }
 
-    public void setTypes(List<TypeDTO> types) {
-        this.types = types;
+    public void setPosition(Integer position) {
+        this.position = position;
     }
-
-
 }

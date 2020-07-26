@@ -5,7 +5,7 @@ import java.util.List;
 public interface UploadFileService {
 
     List<UploadFileDTO> getAll();
-    List<UploadFileDTO> getAllPhotosForProduct(Long productId);
+    List<UploadFileSelfDTO> getAllPhotosForProduct(Long productId);
 
     UploadFileDTO getFile(Long id);
 
