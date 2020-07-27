@@ -12,4 +12,6 @@ public interface ProductService {
     Long createAndReturnId(ProductDTO productDTO);
     ProductDTO getById(Long id);
     void addPhotoToId(UploadFileDTO photo,Long productId );
+
+    void createProductWithImage(ProductDTO product, List<String> myParams);
 }

@@ -9,6 +9,8 @@ import java.util.List;
 public interface DepartmentService {
     List<DepartmentChildDTO> getAll();
 
+    List<DepartmentDTO> getAllWitchCategoryChildDTO();
+
     void create(DepartmentSelfDTO departmentSelfDTO);
 
     void create(DepartmentSelfDTO departmentSelfDTO, List<Long> categoryIds);

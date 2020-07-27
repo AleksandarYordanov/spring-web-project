@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:include="~{admin/fragments/left-sidebar}"></th:block>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Topbar Start -->
+            <th:block th:include="~{admin/fragments/top-bar}"></th:block>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li>
+                                    <li class="breadcrumb-item active">Create Project</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Create Top Slider</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <form class="row my-form" th:action="@{/admin/top-slider/create}" method="post">
+
+                                    <div class="col-xl-6">
+
+
+                                        <!--Product Name-->
+                                        <div class="form-group">
+                                            <label for="validationCustom01">Name</label>
+                                            <input   name="name" type="text" id="validationCustom01" class="form-control"
+                                                     placeholder="Enter product name">
+                                        </div>
+
+                                        <!--Slider for Live-->
+                                        <div class="form-group">
+                                            <label>Product active</label>
+                                            <div class="custom-control custom-switch"></div>
+                                            <input type="checkbox" id="switch2" checked data-switch="success"
+                                                   name="active"/>
+                                            <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
+                                        </div>
+
+                                        <!--Position-->
+                                        <div class="form-group">
+                                            <label for="validationCustom01">Position</label>
+                                            <input   name="position" type="text"  class="form-control"
+                                                     placeholder="Enter position">
+                                        </div>
+
+                                        <!--Link-->
+                                        <div class="form-group">
+                                            <label for="validationCustom01">Link</label>
+                                            <input   name="link" type="text"  class="form-control"
+                                                     placeholder="Enter link">
+                                        </div>
+
+
+                                        <!--edit are-->
+                                        <textarea name="description" id="summernote-basic"></textarea>
+
+                                    </div> <!-- end col-->
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group mt-3 mt-xl-0">
+                                            <label  class="mb-0">Avatar</label>
+                                            <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).
+                                            </p>
+
+                                            <div action="/upload" method="post" class="dropzone" id="demo-upload"
+                                                 data-plugin="dropzone" data-previews-container="#file-previews"
+                                                 data-upload-preview-template="#uploadPreviewTemplate">
+                                                <div class="fallback">
+                                                    <input name="file" type="file" />
+                                                </div>
+
+                                                <div class="dz-message needsclick">
+                                                    <i class="h3 text-muted dripicons-cloud-upload"></i>
+                                                    <h4>Drop files here or click to upload.</h4>
+                                                </div>
+                                            </div>
+
+                                            <!-- Preview -->
+                                            <div class="dropzone-previews mt-3" id="file-previews" data-plugin="dragula">
+
+
+                                            </div>
+
+                                            <!-- file preview template -->
+                                            <div class="d-none" id="uploadPreviewTemplate">
+                                                <div class="card mt-1 mb-0 shadow-none border">
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div  class="col-auto new-image">
+                                                                <img  type="image" data-dz-thumbnail src=""
+                                                                      class=" bg-light" alt="">
+                                                                <input class="new-image-bits" name="imageBits" type="hidden" path="id" id="hiddenId"/>
+                                                            </div>
+                                                            <div class="col pl-0">
+                                                                <a href="javascript:void(0);"
+                                                                   class="text-muted font-weight-bold"
+                                                                   data-dz-name></a>
+                                                                <p class="mb-0" data-dz-size></p>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <!-- Button -->
+                                                                <a href="" class="btn btn-link btn-lg text-muted"
+                                                                   data-dz-remove>
+                                                                    <i class="dripicons-cross"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end file preview template -->
+                                        </div>
+
+
+                                    </div> <!-- end col-->
+
+
+
+
+                                    <div class="col-xl-12">
+
+
+                                        <!--Submit button-->
+                                        <button class="btn btn-primary" type="submit">Submit form</button>
+                                    </div><!--end col-->
+
+
+                                </form>
+
+                            </div> <!-- end card-body -->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row-->
+
+            </div> <!-- container -->
+
+
+        </div>
+    </div> <!-- content -->
+
+    <!-- Footer Start -->
+    <th:block th:include="~{admin/fragments/footer}"></th:block>
+    <!-- end Footer -->
+
+
+
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<script>
+    Dropzone.options.MyDropzone = {
+        autoProcessQueue : false,
+        dictDefaultMessage: "Drop files or click here to upload a new DICOM series ...",
+        init : function() {
+
+            myDropzone = this;
+
+            //Restore initial message when queue has been completed
+            this.on("drop", function(event) {
+                console.log(myDropzone.files);
+            });
+
+        }
+    };
+</script>
+<!-- bundle -->
+<th:block th:include="~{admin/fragments/bottomjs}"></th:block>
+
+
+<!-- end demo js-->
+
+
+</body>
+
+</html>

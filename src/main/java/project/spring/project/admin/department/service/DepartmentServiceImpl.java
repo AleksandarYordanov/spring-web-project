@@ -37,6 +37,15 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
+    public List<DepartmentDTO> getAllWitchCategoryChildDTO() {
+        return departmentRepository.
+                findAll().
+                stream().
+                map(DepartmentMapper.INSTANCE::mapDepartmentEntityToDto).
+                collect(Collectors.toList());
+    }
+
+    @Override
     public void create(DepartmentSelfDTO departmentSelfDTO) {
 
         DepartmentEntity departmentEntity= DepartmentMapper.INSTANCE.mapDepartmentSelfDtoToEntity(departmentSelfDTO);

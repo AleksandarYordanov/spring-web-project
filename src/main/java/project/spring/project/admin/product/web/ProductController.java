@@ -48,8 +48,6 @@ public class ProductController {
     @GetMapping("/create")
     public ModelAndView productAdd() {
         ModelAndView modelAndView  = new ModelAndView("admin/products/product-create");
-
-
         return modelAndView;
     }
 
@@ -57,46 +55,18 @@ public class ProductController {
     public String createProduct(@RequestParam("imageBits") List<String> myParams,@ModelAttribute ProductDTO product) throws IOException {
 
        myParams.removeAll(Arrays.asList("",null));
-       Long id = productService.createAndReturnId(product);
+       if (myParams.isEmpty()){
+           return "redirect:/admin/products/";
+       }
 
-        for (int i = 0; i < myParams.size(); i++) {
-            String p = myParams.get(i);
-            String location = getDestinationLocation(id,p.substring(p.length()/2,p.length()/2+8));
-            String locationWeb = "";
-            try {
-            locationWeb = saveLocal(location,p);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            UploadFileDTO uploadFileDTO = new UploadFileDTO();
-            uploadFileDTO.setLocation(locationWeb);
+       productService.createProductWithImage(product,myParams);
 
-            uploadFileDTO.setPosition(i);
-            uploadFileService.saveFileForProductId(uploadFileDTO,id);
-        }
+
 
         return "redirect:/admin/products/";
     }
 
-    private String saveLocal(String location, String base64string) throws IOException {
-
-        String base64Image = base64string.split(",")[1];
-
-        byte[] imageBytes = Base64.getDecoder()
-                .decode(base64Image.getBytes(StandardCharsets.UTF_8));
-
-        GoogleCloudStorageServiceImpl googleCloudStorageService = new GoogleCloudStorageServiceImpl();
-      return (googleCloudStorageService.createSmth(imageBytes, location));
 
 
-
-    }
-
-    private String getDestinationLocation(Long productId, String name) {
-        return "products/"+productId+"/"+name;
-    }
-    private String getDestinationFolderLocation(Long productId, String name) {
-        return "D:/Programming/Projects/SoftUni/Java Web/Spring Project/upload-files/products/"+productId+"/";
-    }
 
 }

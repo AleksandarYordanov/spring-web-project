@@ -3,6 +3,7 @@ package project.spring.project.admin.department.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import project.spring.project.admin.category.model.CategoryChildDTO;
 import project.spring.project.admin.category.model.CategoryDTO;
 
 import javax.validation.constraints.NotBlank;
@@ -21,7 +22,7 @@ public class DepartmentDTO {
     private boolean active;
     private Timestamp addedDate;
     private Integer position;
-    private List<CategoryDTO> categories;
+    private List<CategoryChildDTO> categories;
 
     public Integer getPosition() {
         return position;
@@ -74,12 +75,11 @@ public class DepartmentDTO {
         this.id = id;
     }
 
-
-    public List<CategoryDTO> getCategories() {
+    public List<CategoryChildDTO> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryDTO> categories) {
+    public void setCategories(List<CategoryChildDTO> categories) {
         this.categories = categories;
     }
 }

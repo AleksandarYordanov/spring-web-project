@@ -9,7 +9,12 @@ import project.spring.project.admin.product.model.ProductMapper;
 import project.spring.project.admin.product.repository.ProductRepository;
 import project.spring.project.admin.utils.fileUpload.UploadFileDTO;
 import project.spring.project.admin.utils.fileUpload.UploadFileService;
+import project.spring.project.admin.utils.googleCloudStorage.GoogleCloudStorageServiceImpl;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -67,5 +72,43 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addPhotoToId(UploadFileDTO photo, Long productId) {
       uploadFileService.saveFileForProductId(photo,productId);
+    }
+
+    @Override
+    public void createProductWithImage(ProductDTO product, List<String> myParams) {
+        myParams.removeAll(Arrays.asList("",null));
+        Long id = createAndReturnId(product);
+        for (int i = 0; i < myParams.size(); i++) {
+            String p = myParams.get(i);
+            String location = getDestinationLocation(id,p.substring(p.length()/2,p.length()/2+8));
+            String locationWeb = "";
+            try {
+                locationWeb = saveWeb(location,p);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            UploadFileDTO uploadFileDTO = new UploadFileDTO();
+            uploadFileDTO.setLocation(locationWeb);
+            uploadFileDTO.setPosition(i);
+            uploadFileService.saveFileForProductId(uploadFileDTO,id);
+        }
+    }
+
+    private String getDestinationLocation(Long productId, String name) {
+        return "products/"+productId+"/"+name;
+    }
+
+    private String saveWeb(String location, String base64string) throws IOException {
+
+        String base64Image = base64string.split(",")[1];
+
+        byte[] imageBytes = Base64.getDecoder()
+                .decode(base64Image.getBytes(StandardCharsets.UTF_8));
+
+        GoogleCloudStorageServiceImpl googleCloudStorageService = new GoogleCloudStorageServiceImpl();
+        return (googleCloudStorageService.saveToWeb(imageBytes, location));
+
+
+
     }
 }

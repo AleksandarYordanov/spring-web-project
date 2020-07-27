@@ -10,6 +10,7 @@ public interface UploadFileService {
     UploadFileDTO getFile(Long id);
 
     void saveFile(UploadFileDTO uploadedFile);
+    Long saveFileAndReturnId(UploadFileDTO uploadedFile);
     void saveFileForProductId(UploadFileDTO uploadFileDTO,Long productId);
     void deleteFileWithId(Long id);
 }

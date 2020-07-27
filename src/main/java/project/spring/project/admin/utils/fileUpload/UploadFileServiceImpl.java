@@ -51,6 +51,12 @@ public class UploadFileServiceImpl implements UploadFileService {
     }
 
     @Override
+    public Long saveFileAndReturnId(UploadFileDTO uploadedFile) {
+       UploadFileEntity uploadFileEntity = uploadFileRepository.save(UploadFileMapper.INSTANCE.mapUploadFileDtoToEntity(uploadedFile));
+       return uploadFileEntity.getId();
+    }
+
+    @Override
     public void saveFileForProductId(UploadFileDTO uploadFileDTO, Long productId) {
         productRepository.findById(productId).map(product-> {
 
