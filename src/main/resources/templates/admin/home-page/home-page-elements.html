@@ -44,71 +44,290 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col-sm-4">
-                                        <a th:href="@{'~/admin/top-slider/create/'}" class="btn btn-danger mb-2"><i
-                                                class="mdi mdi-plus-circle mr-2"></i> Create Top Slider</a>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="text-sm-right">
+                                <!-- top slider-->
+                                <div class="form-group">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <a th:href="@{'~/admin/top-slider/create/'}" class="btn btn-danger mb-2"><i
+                                                    class="mdi mdi-plus-circle mr-2"></i> Create Top Slider</a>
                                         </div>
-                                    </div><!-- end col-->
-                                </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                            </div>
+                                        </div><!-- end col-->
+                                    </div>
 
-
-                                <div class="table-responsive">
-                                    <table id="scroll-vertical-datatable" class="table dt-responsive nowrap">
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <th class="all">TopSlider</th>
-                                            <th>Status</th>
-                                            <th>Position</th>
-                                            <th style="width: 85px;">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <th:block th:each="topSlider : ${allTopSlider}">
+                                    <!-- top slider table-->
+                                    <div class="table-responsive">
+                                        <table id="scroll-vertical-datatable" class="table dt-responsive nowrap">
+                                            <thead class="thead-light">
                                             <tr>
-                                                <!--Main Category-->
-                                                <td>
-                                                    <!--Main Category Icon-->
-                                                    <img th:src="${topSlider.getPhoto().getLocation()}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
-
-                                                    <!--Main Category Name-->
-                                                    <p class="m-0 d-inline-block align-middle font-16">
-                                                        <a th:text="${topSlider.getName()}" th:href="@{'~/admin/top-slider/details/' + ${topSlider.getId()}}"
-                                                           class="text-body"></a>
-                                                    </p>
-                                                </td>
-                                                <!--Active-->
-                                                <td>
-                                                    <div th:if="${topSlider.active}">
-                                                        <span class="badge badge-success">Active</span>
-                                                    </div>
-                                                    <div th:unless="${topSlider.active}">
-                                                        <span class="badge badge-danger">Disabled</span>
-                                                    </div>
-                                                </td>
-                                                <!--Position-->
-                                                <td>
-                                                    <p th:text="${topSlider.getPosition()}"></p>
-                                                </td>
-                                                <!--Actions-->
-                                                <td class="table-action">
-                                                    <a th:href="@{'~/admin/top-slider/details/' + ${topSlider.getId()}}" class="action-icon"> <i
-                                                            class="mdi mdi-square-edit-outline"></i></a>
-                                                    <a th:href="@{'~/admin/top-slider/delete/' + ${topSlider.getId()}}" class="action-icon"> <i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
+                                                <th class="all">TopSlider</th>
+                                                <th>Status</th>
+                                                <th>Position</th>
+                                                <th style="width: 85px;">Action</th>
                                             </tr>
-                                        </th:block>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="topSlider : ${allTopSlider}">
+                                                <tr>
+                                                    <!--Main Category-->
+                                                    <td>
+                                                        <!--Main Category Icon-->
+                                                        <img th:src="${topSlider.getPhoto().getLocation()}"
+                                                             alt="contact-img" title="contact-img" class="rounded mr-3"
+                                                             height="48"/>
+
+                                                        <!--Main Category Name-->
+                                                        <p class="m-0 d-inline-block align-middle font-16">
+                                                            <a th:text="${topSlider.getName()}"
+                                                               th:href="@{'~/admin/top-slider/details/' + ${topSlider.getId()}}"
+                                                               class="text-body"></a>
+                                                        </p>
+                                                    </td>
+                                                    <!--Active-->
+                                                    <td>
+                                                        <div th:if="${topSlider.active}">
+                                                            <span class="badge badge-success">Active</span>
+                                                        </div>
+                                                        <div th:unless="${topSlider.active}">
+                                                            <span class="badge badge-danger">Disabled</span>
+                                                        </div>
+                                                    </td>
+                                                    <!--Position-->
+                                                    <td>
+                                                        <p th:text="${topSlider.getPosition()}"></p>
+                                                    </td>
+                                                    <!--Actions-->
+                                                    <td class="table-action">
+                                                        <a th:href="@{'~/admin/top-slider/details/' + ${topSlider.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a th:href="@{'~/admin/top-slider/delete/' + ${topSlider.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                            </tbody> <!-- end table top-slider -->
+                                            <!--table top-left-deals -->
+                                        </table>
+                                    </div>
+                                </div> <!-- end top slider-->
+
+                                <!-- top left deal-->
+                                <div class="form-group">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <a th:href="@{'~/admin/top-left-deal/create/'}" class="btn btn-danger mb-2"><i
+                                                    class="mdi mdi-plus-circle mr-2"></i> Create Top Lef Deal</a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                            </div>
+                                        </div><!-- end col-->
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table dt-responsive nowrap">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th class="all">TopLefDeal</th>
+                                                <th>Status</th>
+                                                <th>Position</th>
+                                                <th style="width: 85px;">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="topLeftDeal : ${allTopLeftDeal}">
+                                                <tr>
+                                                    <!--Main Category-->
+                                                    <td>
+                                                        <!--Main Category Icon-->
+                                                        <img th:src="${topLeftDeal.getPhoto().getLocation()}"
+                                                             alt="contact-img" title="contact-img" class="rounded mr-3"
+                                                             height="48"/>
+
+                                                        <!--Main Category Name-->
+                                                        <p class="m-0 d-inline-block align-middle font-16">
+                                                            <a th:text="${topLeftDeal.getName()}"
+                                                               th:href="@{'~/admin/top-left-deal/details/' + ${topLeftDeal.getId()}}"
+                                                               class="text-body"></a>
+                                                        </p>
+                                                    </td>
+                                                    <!--Active-->
+                                                    <td>
+                                                        <div th:if="${topLeftDeal.active}">
+                                                            <span class="badge badge-success">Active</span>
+                                                        </div>
+                                                        <div th:unless="${topLeftDeal.active}">
+                                                            <span class="badge badge-danger">Disabled</span>
+                                                        </div>
+                                                    </td>
+                                                    <!--Position-->
+                                                    <td>
+                                                        <p th:text="${topLeftDeal.getPosition()}"></p>
+                                                    </td>
+                                                    <!--Actions-->
+                                                    <td class="table-action">
+                                                        <a th:href="@{'~/admin/top-left-deal/details/' + ${topLeftDeal.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a th:href="@{'~/admin/top-left-deal/delete/' + ${topLeftDeal.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                        </table><!--end table top-left-details -->
+                                    </div>
+                                </div>  <!-- end top left deal-->
+
+
+                                <!-- promo banner-->
+                                <div class="form-group">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <a th:href="@{'~/admin/promo-banner/create/'}" class="btn btn-danger mb-2"><i
+                                                    class="mdi mdi-plus-circle mr-2"></i> Create Top Lef Deal</a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                            </div>
+                                        </div><!-- end col-->
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table dt-responsive nowrap">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th class="all">Promo Banner</th>
+                                                <th>Status</th>
+                                                <th>Position</th>
+                                                <th>End Date</th>
+                                                <th style="width: 85px;">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="promoBnnaer : ${allPromoBanner}">
+                                                <tr>
+                                                    <!--Main Category-->
+                                                    <td>
+                                                        <!--Main Category Icon-->
+                                                        <img th:src="${promoBnnaer.getPhoto().getLocation()}"
+                                                             alt="contact-img" title="contact-img" class="rounded mr-3"
+                                                             height="48"/>
+
+                                                        <!--Main Category Name-->
+                                                        <p class="m-0 d-inline-block align-middle font-16">
+                                                            <a th:text="${promoBnnaer.getName()}"
+                                                               th:href="@{'~/admin/promo-banner/details/' + ${promoBnnaer.getId()}}"
+                                                               class="text-body"></a>
+                                                        </p>
+                                                    </td>
+                                                    <!--Active-->
+                                                    <td>
+                                                        <div th:if="${promoBnnaer.active}">
+                                                            <span class="badge badge-success">Active</span>
+                                                        </div>
+                                                        <div th:unless="${promoBnnaer.active}">
+                                                            <span class="badge badge-danger">Disabled</span>
+                                                        </div>
+                                                    </td>
+                                                    <!--Position-->
+                                                    <td>
+                                                        <p th:text="${promoBnnaer.getPosition()}"></p>
+                                                    </td>
+                                                    <td>
+                                                        <p th:text="${promoBnnaer.getDate()}"></p>
+                                                    </td>
+                                                    <!--Actions-->
+                                                    <td class="table-action">
+                                                        <a th:href="@{'~/admin/promo-banner/details/' + ${promoBnnaer.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a th:href="@{'~/admin/promo-banner/delete/' + ${promoBnnaer.getId()}}"
+                                                           class="action-icon"> <i
+                                                                class="mdi mdi-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                        </table><!--end table top-left-details -->
+                                    </div>
+                                </div>  <!-- end promo banner-->
+
+                                <div class="form-group">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <a th:href="@{'~/admin/home-featured/create/'}" class="btn btn-danger mb-2"><i
+                                                    class="mdi mdi-plus-circle mr-2"></i> Create Home Feature</a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-sm-right">
+                                                <button homeFeatured="button" class="btn btn-success mb-2 mr-1"><i
+                                                        class="mdi mdi-settings"></i></button>
+                                                <button homeFeatured="button" class="btn btn-light mb-2 mr-1">Import</button>
+                                                <button homeFeatured="button" class="btn btn-light mb-2">Export</button>
+                                            </div>
+                                        </div><!-- end col-->
+                                    </div>
+
+
+                                    <div class="table-responsive">
+                                        <table  class="table dt-responsive nowrap">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th class="all">Home Featured</th>
+                                                <th>Status</th>
+                                                <th>Position</th>
+                                                <th style="width: 85px;">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="homeFeatured : ${allHomeFeatured}">
+                                                <tr>
+                                                    <!--Main Category-->
+                                                    <td>
+
+
+                                                        <!--Main Category Name-->
+                                                        <p class="m-0 d-inline-block align-middle font-16">
+                                                            <a th:text="${homeFeatured.getName()}" th:href="@{'~/admin/home-featured/details/' + ${homeFeatured.getId()}}"
+                                                               class="text-body"></a>
+                                                        </p>
+                                                    </td>
+                                                    <!--Active-->
+                                                    <td>
+                                                        <div th:if="${homeFeatured.active}">
+                                                            <span class="badge badge-success">Active</span>
+                                                        </div>
+                                                        <div th:unless="${homeFeatured.active}">
+                                                            <span class="badge badge-danger">Disabled</span>
+                                                        </div>
+                                                    </td>
+                                                    <!--Added Date-->
+                                                    <td>
+                                                        <p th:text="${homeFeatured.getPosition()}"></p>
+                                                    </td>
+                                                    <!--Actions-->
+                                                    <td class="table-action">
+                                                        <a th:href="@{'~/admin/home-featured/details/' + ${homeFeatured.getId()}}" class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a th:href="@{'~/admin/home-featureds/delete/' + ${homeFeatured.getId()}}" class="action-icon"> <i
+                                                                class="mdi mdi-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
 
 
 
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -133,7 +352,6 @@
 
 </div>
 <!-- END wrapper -->
-
 
 
 <!-- bundle -->

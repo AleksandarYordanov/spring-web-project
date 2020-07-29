@@ -52,7 +52,7 @@
                                 <!--Category Name-->
                                 <div class="form-group">
                                     <label for="validationCustom01">Name</label>
-                                    <input th:value="${typeChildDTO.getName()}" type="text" id="validationCustom01" class="form-control"
+                                    <input th:value="${homeFeaturedChildDTO.getName()}" type="text" id="validationCustom01" class="form-control"
                                            name="name"
                                            placeholder="Enter category name">
                                 </div>
@@ -63,12 +63,29 @@
                                 <div class="form-group">
                                     <label>Category active</label>
                                     <div class="custom-control custom-switch"></div>
-                                    <input type="checkbox" id="switch3" th:attrappend="checked=${typeChildDTO.isActive() == true}?'a'" data-switch="success"
+                                    <input type="checkbox" id="switch3" th:attrappend="checked=${homeFeaturedChildDTO.isActive() == true}?'a'" data-switch="success"
                                            name="active"/>
                                     <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                                 </div>
 
 
+                                <!--Slider for MaIN-->
+                                <div class="form-group">
+                                    <label>Main</label>
+                                    <div class="custom-control custom-switch"></div>
+                                    <input type="checkbox" id="switch4" th:attrappend="checked=${homeFeaturedChildDTO.isMain() == true}?'a'"  data-switch="success"
+                                           name="main"/>
+                                    <label for="switch4" data-on-label="Yes" data-off-label="No"></label>
+                                </div>
+
+
+
+                                <!--Position-->
+                                <div class="form-group">
+                                    <label for="validationCustom01">Position</label>
+                                    <input th:value="${homeFeaturedChildDTO.getPosition()}"   name="position" type="text"  class="form-control"
+                                             placeholder="Enter position">
+                                </div>
 
                                 <!--Submit button-->
                                 <div class="form-group">
@@ -89,7 +106,7 @@
                                         </thead>
                                         <tbody data-plugin="dragula" class="with-position category-table">
                                         <tr></tr>
-                                        <th:block th:each="product : ${typeChildDTO.getProducts()}">
+                                        <th:block th:each="product : ${homeFeaturedChildDTO.getProducts()}">
                                             <tr>
                                                 <td>
                                                     <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
@@ -148,7 +165,7 @@
                                                     <th:block th:each="product : ${allProducts}">
                                                         <tr>
                                                             <td>
-                                                                <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="" />
+                                                                <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
                                                                 <p class="m-0 d-inline-block align-middle font-16">
 
                                                                     <br/>

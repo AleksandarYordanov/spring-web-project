@@ -21,7 +21,6 @@
             <!-- end Topbar -->
 
             <!-- Start Content-->
-            <!-- Start Content-->
             <div class="container-fluid">
 
                 <!-- start page title -->
@@ -39,164 +38,176 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- end page title -->
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
 
-                <div class="card">
-                    <div class="card-body">
+                                <form class="row my-form" th:action="@{ ${id}}" method="post">
 
-
-                        <form class="row justify-content-around" th:action="@{ ${id}}" method="post">
-                            <div class="col ">
-
-                                <!--Category Name-->
-                                <div class="form-group">
-                                    <label for="validationCustom01">Name</label>
-                                    <input th:value="${typeChildDTO.getName()}" type="text" id="validationCustom01" class="form-control"
-                                           name="name"
-                                           placeholder="Enter category name">
-                                </div>
+                                    <div class="col-xl-6">
 
 
-
-                                <!--Slider for Active-->
-                                <div class="form-group">
-                                    <label>Category active</label>
-                                    <div class="custom-control custom-switch"></div>
-                                    <input type="checkbox" id="switch3" checked data-switch="success"
-                                           name="active"/>
-                                    <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
-                                </div>
-
-
-
-                                <!--Submit button-->
-                                <div class="form-group">
-                                    <button class="btn btn-primary" type="submit">Submit form</button>
-                                </div>
-
-                            </div> <!-- end col-->
-                            <div class="col right">
-
-                                <div class="form-group">
-                                    <table class="table table-striped table-centered mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th class="all">Product</th>
-                                            <th>Active</th>
-                                            <th style="width: 85px;">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody data-plugin="dragula" class="with-position category-table">
-                                        <tr></tr>
-                                        <th:block th:each="product : ${typeChildDTO.getProducts()}">
-                                            <tr>
-                                                <td>
-                                                    <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
-                                                    <p class="m-0 d-inline-block align-middle font-16">
-
-                                                        <br/>
-                                                        <span class="text-warning mdi mdi-star"></span>
-                                                        <span class="text-warning mdi mdi-star"></span>
-                                                        <span class="text-warning mdi mdi-star"></span>
-                                                        <span class="text-warning mdi mdi-star"></span>
-                                                        <span class="text-warning mdi mdi-star"></span>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <div th:if="${product.active}">
-                                                        <span class="badge badge-success">Active</span>
-                                                    </div>
-                                                    <div th:unless="${product.active}">
-                                                        <span class="badge badge-danger">Disabled</span>
-                                                    </div>
-                                                </td>
-                                                <input type="hidden" name="productId" th:value="${product.getId()}">
-
-                                            </tr>
-                                        </th:block>
-                                        </tbody>
-
-                                    </table>
-                                </div>
-
-                                <div class="container-fluid">
-                                    <div class="row justify-content-end">
-                                    <div class="col-1">
+                                        <!--Product Name-->
                                         <div class="form-group">
-                                            <button type="button"
-                                                    class="btn btn-primary btn-rounded  align-self-end  category-picker-button-show">
-                                                +
-                                            </button>
+                                            <label for="validationCustom01">Name</label>
+                                            <input th:value="${productDTO.getName()}"  name="name" type="text" id="validationCustom01" class="form-control"
+                                                     placeholder="Enter product name">
                                         </div>
-                                    </div>
-                                    </div>
-                                    <div class="row justify-content-end">
-                                        <div class="col-4">
+
+
+                                        <!--Price of Product-->
                                         <div class="form-group">
-                                            <div class="category-picker w-25" tabindex="-1">
-                                                <input class="category-picker-input w-100" type="text"
-                                                       placeholder="Search...">
-                                                <table class="table table-striped  mb-5">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="all">Product</th>
-                                                        <th>Active</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody class="category-picker-table">
-                                                    <th:block th:each="product : ${allProducts}">
-                                                        <tr>
-                                                            <td>
-                                                                <img th:src="${product.photos.get(0).location}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
-                                                                <p class="m-0 d-inline-block align-middle font-16">
+                                            <label >Price</label>
+                                            <input th:value="${productDTO.getPrice()}" name="price" data-toggle="touchspin" data-bts-max="unlimited" value="0.00" type="text" data-step="0.01" data-decimals="2" data-bts-postfix="$">
+                                        </div>
 
-                                                                    <br/>
-                                                                    <span class="text-warning mdi mdi-star"></span>
-                                                                    <span class="text-warning mdi mdi-star"></span>
-                                                                    <span class="text-warning mdi mdi-star"></span>
-                                                                    <span class="text-warning mdi mdi-star"></span>
-                                                                    <span class="text-warning mdi mdi-star"></span>
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <div th:if="${product.active}">
-                                                                    <span class="badge badge-success">Active</span>
-                                                                </div>
-                                                                <div th:unless="${product.active}">
-                                                                    <span class="badge badge-danger">Disabled</span>
-                                                                </div>
-                                                            </td>
-                                                            <td name="productId" style="display:none;" class="value"
-                                                                th:text="${product.id}"></td>
+                                        <!--Stock of Product-->
+                                        <div class="form-group">
+                                            <label >Product Stock</label>
+                                            <input th:value="${productDTO.getStock()}" name="stock" data-toggle="touchspin" data-bts-max="unlimited" value="0.00" type="text" data-step="1" data-decimals="0" >
+                                        </div>
 
-                                                        </tr>
-                                                    </th:block>
-                                                    </tbody>
-                                                </table>
+                                        <!--Slider for Unlimited-->
+                                        <div class="form-group">
+                                            <label>Product Unlimited</label>
+                                            <div class="custom-control custom-switch"></div>
+                                            <input name="unlimited" type="checkbox" id="switch1" th:attrappend="checked=${productDTO.isUnlimited() == true}?'a'"  data-switch="success"
+                                            />
+                                            <label for="switch1" data-on-label="Yes" data-off-label="No"></label>
+                                        </div>
+
+                                        <!--Slider for Live-->
+                                        <div class="form-group">
+                                            <label>Product active</label>
+                                            <div class="custom-control custom-switch"></div>
+                                            <input type="checkbox" id="switch2" th:attrappend="checked=${productDTO.isActive() == true}?'a'"  data-switch="success"
+                                                   name="active"/>
+                                            <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
+                                        </div>
+
+
+
+                                        <!--Short description of Product-->
+                                        <div class="form-group">
+                                            <label>Short Desctiption</label>
+                                            <input th:value="${productDTO.getShortDescription()}" name="shortDescription" type="text" class="form-control" maxlength="25" data-toggle="maxlength">
+                                        </div>
+
+                                    </div> <!-- end col-->
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group mt-3 mt-xl-0">
+                                            <label  class="mb-0">Avatar</label>
+                                            <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).
+                                            </p>
+
+                                            <div action="/upload" method="post" class="dropzone" id="myDropzone"
+                                                 data-plugin="dropzone" data-previews-container="#file-previews"
+                                                 data-upload-preview-template="#uploadPreviewTemplate">
+                                                <div class="fallback">
+                                                    <input name="file" type="file" />
+                                                </div>
+
+                                                <div class="dz-message needsclick">
+                                                    <i class="h3 text-muted dripicons-cloud-upload"></i>
+                                                    <h4>Drop files here or click to upload.</h4>
+                                                </div>
                                             </div>
+
+                                            <!-- Preview -->
+                                            <div class="dropzone-previews mt-3" id="file-previews" data-plugin="dragula">
+                                                <th:block th:each="photo : ${productDTO.getPhotos()}">
+                                                <div class="card mt-1 mb-0 shadow-none border dz-processing dz-success dz-complete dz-image-preview" >
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-auto new-image">
+                                                                <img type="image" data-dz-thumbnail class="bg-light"
+                                                                     th:src="${photo.getLocation()}"/>
+
+                                                            </div>
+                                                            <div class="col pl-0">
+                                                                <input type="hidden" name="imageBits" th:value="${photo.getId()}"/>
+                                                                <a href="javascript:void(0);"
+                                                                   class="text-muted font-weight-bold"
+                                                                   data-dz-name="">res_dfbec0bd700307e0e88bf8d853a8c260.webp</a>
+                                                                <p class="mb-0" data-dz-size=""><strong>1.3</strong>
+                                                                    KB</p>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <!-- Button -->
+                                                                <a  class="btn btn-link btn-lg text-muted btn-remove-existing-pic" data-dz-remove>
+                                                                    <i class="dripicons-cross"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </th:block>
+                                            </div>
+
+                                            <!-- file preview template -->
+                                            <div class="d-none" id="uploadPreviewTemplate">
+                                                <div class="card mt-1 mb-0 shadow-none border">
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div  class="col-auto new-image">
+                                                                <img  type="image" data-dz-thumbnail src=""
+                                                                      class=" bg-light" alt="">
+                                                                <input class="new-image-bits" name="imageBits" type="hidden" path="id" id="hiddenId"/>
+                                                            </div>
+                                                            <div class="col pl-0">
+                                                                <a href="javascript:void(0);"
+                                                                   class="text-muted font-weight-bold"
+                                                                   data-dz-name></a>
+                                                                <p class="mb-0" data-dz-size></p>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <!-- Button -->
+                                                                <a href="" class="btn btn-link btn-lg text-muted"
+                                                                   data-dz-remove>
+                                                                    <i class="dripicons-cross"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end file preview template -->
                                         </div>
-                                    </div>
-                                    </div>
 
-                                    </div>
 
-                                </div>
-                                <!-- Select Category -->
+                                    </div> <!-- end col-->
 
 
 
 
+                                    <div class="col-xl-12">
 
-                        </form>
+                                        <!--Full Description of Product-->
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea th:value="${productDTO.getDescription()}" name="description" data-toggle="maxlength" class="form-control" maxlength="5000" rows="3"
+                                                      placeholder="description"></textarea>
+                                        </div>
+                                        <!--Submit button-->
+                                        <button class="btn btn-primary" type="submit">Submit form</button>
+                                    </div><!--end col-->
 
-                    </div> <!-- end card-body-->
-                </div><!-- end card-->
 
+                                </form>
 
-            </div>
+                            </div> <!-- end card-body -->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row-->
 
-            <!-- container -->
+            </div> <!-- container -->
+
 
         </div>
     </div> <!-- content -->
@@ -204,6 +215,8 @@
     <!-- Footer Start -->
     <th:block th:include="~{admin/fragments/footer}"></th:block>
     <!-- end Footer -->
+
+
 
 
     <!-- ============================================================== -->
@@ -214,9 +227,26 @@
 </div>
 <!-- END wrapper -->
 
+<script>
+    Dropzone.options.MyDropzone = {
+        autoProcessQueue : false,
+        dictDefaultMessage: "Drop files or click here to upload a new DICOM series ...",
+        init : function() {
 
+            myDropzone = this;
+
+            //Restore initial message when queue has been completed
+            this.on("drop", function(event) {
+                console.log(myDropzone.files);
+            });
+
+        }
+    };
+</script>
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
+<script src="/admin/js/remove-existing-pick.js"></script>
+
 <!-- end demo js-->
 
 

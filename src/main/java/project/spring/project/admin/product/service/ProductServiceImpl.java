@@ -60,13 +60,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO getById(Long id) {
+    public ProductChildDTO getById(Long id) {
       Optional<ProductEntity> productEntity = productRepository.findById(id);
+        ProductChildDTO  productChildDTO = new ProductChildDTO();
       if (productEntity.isPresent()){
-          return  ProductMapper.INSTANCE.mapProductEntityToDto(productEntity.get());
+          productChildDTO =  ProductMapper.INSTANCE.mapProductEntityToChildDto(productEntity.get());
       }else {
           throw new IllegalArgumentException("no such entity with id: " + id);
       }
+        productChildDTO.setPhotos( uploadFileService.getAllPhotosForProduct(productChildDTO.getId()));
+      return productChildDTO;
     }
 
     @Override
@@ -108,7 +111,45 @@ public class ProductServiceImpl implements ProductService {
         GoogleCloudStorageServiceImpl googleCloudStorageService = new GoogleCloudStorageServiceImpl();
         return (googleCloudStorageService.saveToWeb(imageBytes, location));
 
+    }
 
+    @Override
+    public void updateProductWithImage(ProductDTO productDTO, List<String> myParams) {
+        myParams.removeAll(Arrays.asList("",null));
+        ProductEntity productEntity = productRepository.getOne(productDTO.getId());
 
+     productEntity.setActive(productDTO.isActive());
+     productEntity.setDescription(productDTO.getDescription());
+     productEntity.setName(productDTO.getName());
+     productEntity.setPrice(productDTO.getPrice());
+     productEntity.setShortDescription(productDTO.getShortDescription());
+     productEntity.setStock(productDTO.getStock());
+     productEntity.setUnlimited(productDTO.isUnlimited());
+
+        manageUploadFile(myParams, productEntity.getId());
+    }
+
+    private void manageUploadFile(List<String> myParams, Long id) {
+        String p = myParams.get(0);
+        try {
+            if(productRepository.existsById(Long.parseLong(p))){
+                return;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        String location = getDestinationLocation(id,p.substring(p.length()/2,p.length()/2+8));
+        String locationWeb = "";
+        try {
+            locationWeb = saveWeb(location,p);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        UploadFileDTO uploadFileDTO = new UploadFileDTO();
+        uploadFileDTO.setLocation(locationWeb);
+        uploadFileDTO.setPosition(0);
+
+        uploadFileService.saveFileForProductId(uploadFileDTO,id);
     }
 }

@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                             <label>Product active</label>
                                             <div class="custom-control custom-switch"></div>
-                                            <input type="checkbox" id="switch2" checked data-switch="success"
+                                            <input type="checkbox" id="switch2" th:attrappend="checked=${topSliderChildDTO.isActive() == true}?'a'" data-switch="success"
                                                    name="active"/>
                                             <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
                                         </div>
@@ -97,7 +97,7 @@
                                             <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).
                                             </p>
 
-                                            <div action="/upload" method="post" class="dropzone" id="demo-upload"
+                                            <div action="/upload" method="post" class="dropzone" id="myDropzone"
                                                  data-plugin="dropzone" data-previews-container="#file-previews"
                                                  data-upload-preview-template="#uploadPreviewTemplate">
                                                 <div class="fallback">
@@ -213,22 +213,24 @@
 </div>
 <!-- END wrapper -->
 
-<script>
-    Dropzone.options.MyDropzone = {
-        autoProcessQueue: false,
-        dictDefaultMessage: "Drop files or click here to upload a new DICOM series ...",
-        init: function () {
+<!--<script>-->
+<!--    Dropzone.options.MyDropzone = {-->
+<!--        thumbnailWidth: 500,-->
+<!--        thumbnailHeight: 500,-->
+<!--        autoProcessQueue: false,-->
+<!--        dictDefaultMessage: "Drop files DICOM series ...",-->
+<!--        init: function () {-->
 
-            myDropzone = this;
+<!--            myDropzone = this;-->
 
-            //Restore initial message when queue has been completed
-            this.on("drop", function (event) {
-                console.log(myDropzone.files);
-            });
+<!--            //Restore initial message when queue has been completed-->
+<!--            this.on("drop", function (event) {-->
+<!--                console.log(myDropzone.files);-->
+<!--            });-->
 
-        }
-    };
-</script>
+<!--        }-->
+<!--    };-->
+<!--</script>-->
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
 <script src="/admin/js/remove-existing-pick.js"></script>

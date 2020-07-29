@@ -59,72 +59,6 @@
                                         </div>
 
 
-
-
-
-                                        <!-- Multiple Select for Main Categories -->
-                                        <div class="form-group">
-                                            <label>Product Main Categories</label>
-                                            <select class="select2 form-control select2-multiple" data-toggle="select2"
-                                                    multiple="multiple" data-placeholder="Choose ...">
-                                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="HI">Hawaii</option>
-                                                </optgroup>
-                                                <optgroup label="Pacific Time Zone">
-                                                    <option value="CA">California</option>
-                                                    <option value="NV">Nevada</option>
-                                                    <option value="OR">Oregon</option>
-                                                    <option value="WA">Washington</option>
-                                                </optgroup>
-                                                <optgroup label="Mountain Time Zone">
-                                                    <option value="AZ">Arizona</option>
-                                                    <option value="CO">Colorado</option>
-                                                    <option value="ID">Idaho</option>
-                                                    <option value="MT">Montana</option>
-                                                    <option value="NE">Nebraska</option>
-                                                    <option value="NM">New Mexico</option>
-                                                    <option value="ND">North Dakota</option>
-                                                    <option value="UT">Utah</option>
-                                                    <option value="WY">Wyoming</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-
-
-
-
-
-                                        <!-- Multiple Select for Secondary Categories -->
-                                        <div class="form-group">
-                                            <label>Product Categories</label>
-                                            <select class="select2 form-control select2-multiple" data-toggle="select2"
-                                                    multiple="multiple" data-placeholder="Choose ...">
-                                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="HI">Hawaii</option>
-                                                </optgroup>
-                                                <optgroup label="Pacific Time Zone">
-                                                    <option value="CA">California</option>
-                                                    <option value="NV">Nevada</option>
-                                                    <option value="OR">Oregon</option>
-                                                    <option value="WA">Washington</option>
-                                                </optgroup>
-                                                <optgroup label="Mountain Time Zone">
-                                                    <option value="AZ">Arizona</option>
-                                                    <option value="CO">Colorado</option>
-                                                    <option value="ID">Idaho</option>
-                                                    <option value="MT">Montana</option>
-                                                    <option value="NE">Nebraska</option>
-                                                    <option value="NM">New Mexico</option>
-                                                    <option value="ND">North Dakota</option>
-                                                    <option value="UT">Utah</option>
-                                                    <option value="WY">Wyoming</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-
-
                                         <!--Price of Product-->
                                         <div class="form-group">
                                             <label >Price</label>
@@ -141,7 +75,7 @@
                                         <div class="form-group">
                                             <label>Product Unlimited</label>
                                             <div class="custom-control custom-switch"></div>
-                                            <input name="unlimited" type="checkbox" id="switch1" checked data-switch="success"
+                                            <input name="unlimited" type="checkbox" id="switch1"  data-switch="success"
                                                   />
                                             <label for="switch1" data-on-label="Yes" data-off-label="No"></label>
                                         </div>
@@ -150,7 +84,7 @@
                                         <div class="form-group">
                                             <label>Product active</label>
                                             <div class="custom-control custom-switch"></div>
-                                            <input type="checkbox" id="switch2" checked data-switch="success"
+                                            <input type="checkbox" id="switch2"  data-switch="success"
                                                    name="active"/>
                                             <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
                                         </div>
@@ -171,7 +105,7 @@
                                             <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).
                                             </p>
 
-                                            <div action="/upload" method="post" class="dropzone" id="demo-upload"
+                                            <div action="/upload" method="post" class="dropzone" id="myDropzone"
                                                   data-plugin="dropzone" data-previews-container="#file-previews"
                                                   data-upload-preview-template="#uploadPreviewTemplate">
                                                 <div class="fallback">
@@ -267,23 +201,6 @@
 
 </div>
 <!-- END wrapper -->
-
-<script>
-    Dropzone.options.MyDropzone = {
-        autoProcessQueue : false,
-        dictDefaultMessage: "Drop files or click here to upload a new DICOM series ...",
-        init : function() {
-
-            myDropzone = this;
-
-            //Restore initial message when queue has been completed
-            this.on("drop", function(event) {
-                console.log(myDropzone.files);
-            });
-
-        }
-    };
-</script>
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
 

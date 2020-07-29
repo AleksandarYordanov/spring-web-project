@@ -46,7 +46,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form class="row my-form" th:action="@{/admin/top-slider/create}" method="post">
+                                <form class="row my-form" th:action="@{/admin/promo-banner/create}" method="post">
 
                                     <div class="col-xl-6">
 
@@ -62,9 +62,22 @@
                                         <div class="form-group">
                                             <label>Product active</label>
                                             <div class="custom-control custom-switch"></div>
-                                            <input type="checkbox" id="switch2"  data-switch="success"
+                                            <input type="checkbox" id="switch2"   data-switch="success"
                                                    name="active"/>
                                             <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >Background Select</label>
+                                            <div>
+                                            <select th:name="background" class="selectpicker">
+                                            <option data-content="<span class='badge badge-success'>muted</span>" class="bg-muted" value="bg-faded-muted">muted</option>
+                                            <option data-content="<span class='bg-primary'>primary</span>" class="bg-primary" value="bg-faded-primary">primary</option>
+                                            <option data-content="<span class='bg-success'>success</span>" class="bg-success" value="bg-faded-success">success</option>
+                                            <option data-content="<span class='bg-info'>info</span>" class="bg-info" value="bg-faded-info">info</option>
+                                            <option data-content="<span class='bg-warning'>Relish</span>" class="bg-warning" value="bg-faded-warning">warning</option>
+                                            </select>
+                                            </div>
                                         </div>
 
 
@@ -80,6 +93,12 @@
                                             <label for="validationCustom01">Link</label>
                                             <input   name="link" type="text"  class="form-control"
                                                      placeholder="Enter link">
+                                        </div>
+
+                                        <!--date-->
+                                        <div class="form-group">
+                                            <label for="validationCustom01">Link</label>
+                                            <input class="form-control" id="example-date" type="date" name="date">
                                         </div>
 
 

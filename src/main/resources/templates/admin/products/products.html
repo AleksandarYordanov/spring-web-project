@@ -77,7 +77,7 @@
                                             <td>
                                                 <img th:src="${product.getPhotos().get(0).getLocation()}" alt="contact-img" title="contact-img" class="rounded mr-3" height="48" />
                                                 <p class="m-0 d-inline-block align-middle font-16">
-                                                    <a href="apps-ecommerce-products-details.html" th:text="${product.getName()}" class="text-body">Amazing Modern Chair</a>
+                                                    <a th:href="@{'~/admin/products/details/' + ${product.getId()}}" th:text="${product.getName()}" class="text-body">Amazing Modern Chair</a>
                                                     <br/>
                                                     <span class="text-warning mdi mdi-star"></span>
                                                     <span class="text-warning mdi mdi-star"></span>
@@ -114,9 +114,8 @@
                                             </td>
 
                                             <td class="table-action">
-                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                <a th:href="@{'~/admin/products/details/' + ${product.getId()}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                <a th:href="@{'~/admin/products/delete/' + ${product.getId()}}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                             </td>
                                         </tr>
                                         </th:block>

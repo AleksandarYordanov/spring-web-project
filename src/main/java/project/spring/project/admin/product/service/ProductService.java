@@ -10,8 +10,12 @@ public interface ProductService {
     List<ProductChildDTO> getAll();
     void create(ProductDTO productDTO);
     Long createAndReturnId(ProductDTO productDTO);
-    ProductDTO getById(Long id);
+    ProductChildDTO getById(Long id);
     void addPhotoToId(UploadFileDTO photo,Long productId );
 
     void createProductWithImage(ProductDTO product, List<String> myParams);
+
+
+
+    void updateProductWithImage(ProductDTO productDTO, List<String> myParams);
 }

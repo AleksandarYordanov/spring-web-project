@@ -46,7 +46,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form class="row my-form" th:action="@{/admin/top-slider/create}" method="post">
+                                <form class="row my-form" th:action="@{ ${id}}" method="post">
 
                                     <div class="col-xl-6">
 
@@ -54,7 +54,7 @@
                                         <!--Product Name-->
                                         <div class="form-group">
                                             <label for="validationCustom01">Name</label>
-                                            <input   name="name" type="text" id="validationCustom01" class="form-control"
+                                            <input th:value="${topLeftDealChildDTO.getName()}"  name="name" type="text" id="validationCustom01" class="form-control"
                                                      placeholder="Enter product name">
                                         </div>
 
@@ -62,9 +62,22 @@
                                         <div class="form-group">
                                             <label>Product active</label>
                                             <div class="custom-control custom-switch"></div>
-                                            <input type="checkbox" id="switch2"  data-switch="success"
+                                            <input type="checkbox" id="switch2" th:attrappend="checked=${topLeftDealChildDTO.isActive() == true}?'a'"  data-switch="success"
                                                    name="active"/>
                                             <label for="switch2" data-on-label="Yes" data-off-label="No"></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >Background Select</label>
+                                            <div>
+                                                <select th:name="background" class="selectpicker">
+                                                    <option th:selected="${topLeftDealChildDTO.getBackground()}=='bg-faded-muted'"  class="bg-muted" value="bg-faded-muted">muted</option>
+                                                    <option  class="bg-primary" value="bg-faded-primary">primary</option>
+                                                    <option  class="bg-success" value="bg-faded-success">success</option>
+                                                    <option  th:selected="${topLeftDealChildDTO.getBackground()}=='bg-faded-info'" class="bg-info" value="bg-faded-info">info</option>
+                                                    <option  class="bg-warning" value="bg-faded-warning">warning</option>
+                                                </select>
+                                            </div>
                                         </div>
 
 
@@ -84,7 +97,7 @@
 
 
                                         <!--edit are-->
-                                        <textarea name="description" id="summernote-basic"></textarea>
+                                        <textarea th:value="${topLeftDealChildDTO.getDescription()}" name="description" id="summernote-basic"></textarea>
 
                                     </div> <!-- end col-->
 
@@ -107,10 +120,35 @@
                                                 </div>
                                             </div>
 
+
                                             <!-- Preview -->
-                                            <div class="dropzone-previews mt-3" id="file-previews" data-plugin="dragula">
+                                            <div class="dropzone-previews mt-3" id="file-previews"
+                                                 data-plugin="dragula">
+                                                <div class="card mt-1 mb-0 shadow-none border dz-processing dz-success dz-complete dz-image-preview" >
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-auto new-image">
+                                                                <img type="image" data-dz-thumbnail class="bg-light"
+                                                                     th:src="${topLeftDealChildDTO.getPhoto().getLocation()}"/>
 
-
+                                                            </div>
+                                                            <div class="col pl-0">
+                                                                <input type="hidden" name="imageBits" th:value="${topLeftDealChildDTO.getPhoto().getId()}"/>
+                                                                <a href="javascript:void(0);"
+                                                                   class="text-muted font-weight-bold"
+                                                                   data-dz-name="">res_dfbec0bd700307e0e88bf8d853a8c260.webp</a>
+                                                                <p class="mb-0" data-dz-size=""><strong>1.3</strong>
+                                                                    KB</p>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <!-- Button -->
+                                                                <a  class="btn btn-link btn-lg text-muted btn-remove-existing-pic" data-dz-remove>
+                                                                    <i class="dripicons-cross"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- file preview template -->
@@ -204,7 +242,7 @@
 </script>
 <!-- bundle -->
 <th:block th:include="~{admin/fragments/bottomjs}"></th:block>
-
+<script src="/admin/js/remove-existing-pick.js"></script>
 
 <!-- end demo js-->
 
