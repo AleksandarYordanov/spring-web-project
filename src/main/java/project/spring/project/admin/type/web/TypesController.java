@@ -4,13 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import project.spring.project.admin.category.model.CategoryDTO;
-import project.spring.project.admin.category.service.CategoryService;
 import project.spring.project.admin.product.model.ProductChildDTO;
-import project.spring.project.admin.product.model.ProductDTO;
 import project.spring.project.admin.product.service.ProductService;
 import project.spring.project.admin.type.model.TypeChildDTO;
-import project.spring.project.admin.type.model.TypeDTO;
 import project.spring.project.admin.type.model.TypeSelfDTO;
 import project.spring.project.admin.type.service.TypeService;
 

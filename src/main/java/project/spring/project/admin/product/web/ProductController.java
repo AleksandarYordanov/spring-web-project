@@ -2,25 +2,15 @@ package project.spring.project.admin.product.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import project.spring.project.admin.homePage.topLefDeals.model.TopLeftDealChildDTO;
 import project.spring.project.admin.product.model.ProductChildDTO;
 import project.spring.project.admin.product.model.ProductDTO;
 import project.spring.project.admin.product.service.ProductService;
-import project.spring.project.admin.type.model.TypeChildDTO;
-import project.spring.project.admin.type.model.TypeSelfDTO;
-import project.spring.project.admin.utils.googleCloudStorage.GoogleCloudStorageServiceImpl;
-import project.spring.project.admin.utils.fileUpload.UploadFileDTO;
 import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 
 @Controller

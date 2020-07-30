@@ -8,9 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import project.spring.project.admin.category.model.CategoryChildDTO;
 import project.spring.project.admin.category.model.CategorySelfDTO;
 import project.spring.project.admin.category.service.CategoryService;
-import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.type.model.TypeChildDTO;
-import project.spring.project.admin.type.model.TypeDTO;
 import project.spring.project.admin.type.service.TypeService;
 
 import java.util.List;

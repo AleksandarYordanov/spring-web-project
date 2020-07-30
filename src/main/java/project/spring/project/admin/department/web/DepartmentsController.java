@@ -5,10 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.spring.project.admin.category.model.CategoryChildDTO;
-import project.spring.project.admin.category.model.CategoryDTO;
 import project.spring.project.admin.category.service.CategoryService;
 import project.spring.project.admin.department.model.DepartmentChildDTO;
-import project.spring.project.admin.department.model.DepartmentDTO;
 import project.spring.project.admin.department.model.DepartmentSelfDTO;
 import project.spring.project.admin.department.service.DepartmentService;
 

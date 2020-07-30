@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import project.spring.project.admin.homePage.topSlider.model.TopSliderChildDTO;
 import project.spring.project.admin.homePage.topSlider.service.TopSliderService;
-import project.spring.project.admin.product.model.ProductDTO;
-import project.spring.project.admin.utils.fileUpload.UploadFileService;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 

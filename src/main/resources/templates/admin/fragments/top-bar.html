@@ -238,10 +238,13 @@
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <form id="logOut" action="/logout" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <a href="javascript:;" onclick="parentNode.submit();" class="dropdown-item notify-item">
                     <i class="mdi mdi-logout mr-1"></i>
                     <span>Logout</span>
                 </a>
+                </form>
 
             </div>
         </li>

@@ -1,5 +1,7 @@
 package project.spring.project.eCommerce.index.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import project.spring.project.admin.homePage.topLefDeals.service.TopLeftDealServ
 import project.spring.project.admin.homePage.topSlider.model.TopSliderChildDTO;
 import project.spring.project.admin.homePage.topSlider.service.TopSliderService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -36,7 +39,7 @@ public class IndexController {
     }
 
     @GetMapping()
-    public ModelAndView dashboard(Model model) {
+    public ModelAndView dashboard(Principal principal) {
         ModelAndView modelAndView  = new ModelAndView("commerce/index/index");
         List<DepartmentDTO> departmentDTOList = departmentService.getAllWitchCategoryChildDTO();
         modelAndView.addObject("departmentDtoList",departmentDTOList);
@@ -55,6 +58,10 @@ public class IndexController {
 
         List<PromoBannerChildDTO> promoBannerChildDTOList = promoBannerService.getAllActiveSorted(true);
         modelAndView.addObject("promoBannerChildDTOList",promoBannerChildDTOList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println(principal);
+
         return modelAndView;
     }
 
