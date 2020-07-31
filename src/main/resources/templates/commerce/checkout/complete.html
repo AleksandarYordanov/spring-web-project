@@ -45,19 +45,19 @@
                             <div class="cz-product-gallery">
                                 <div class="cz-preview order-sm-2">
                                     <th:block th:each="picture : ${productChildDTO.getPhotos()}">
-                                    <div class="cz-preview-item " th:classappend="${pictureStat.first} ? 'active' : '' " th:id="'pic' + ${pictureStat.index}" ><img class="cz-image-zoom" th:src="${picture.getLocation()}" th:attr="data-zoom=${picture.getLocation()}" alt="Product image">
-                                        <div class="cz-image-zoom-pane"></div>
-                                    </div>
-                                    </th:block>
-                            </div>
-                                <div class="cz-thumblist order-sm-1">
-                                    <th:block th:each="picture : ${productChildDTO.getPhotos()}">
-                                    <a class="cz-thumblist-item " th:classappend="${pictureStat.first} ? 'active' : '' " th:href="'#pic'+${pictureStat.index}">
-                                        <img th:src="${picture.getLocation()}" alt="Product thumb">
-                                    </a>
+                                        <div class="cz-preview-item " th:classappend="${pictureStat.first} ? 'active' : '' " th:id="'pic' + ${pictureStat.index}" ><img class="cz-image-zoom" th:src="${picture.getLocation()}" th:attr="data-zoom=${picture.getLocation()}" alt="Product image">
+                                            <div class="cz-image-zoom-pane"></div>
+                                        </div>
                                     </th:block>
                                 </div>
-                        </div>
+                                <div class="cz-thumblist order-sm-1">
+                                    <th:block th:each="picture : ${productChildDTO.getPhotos()}">
+                                        <a class="cz-thumblist-item " th:classappend="${pictureStat.first} ? 'active' : '' " th:href="'#pic'+${pictureStat.index}">
+                                            <img th:src="${picture.getLocation()}" alt="Product thumb">
+                                        </a>
+                                    </th:block>
+                                </div>
+                            </div>
                         </div>
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">

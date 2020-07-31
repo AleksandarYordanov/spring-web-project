@@ -1,12 +1,10 @@
-package project.spring.project.eCommerce.cart.model;
+package project.spring.project.eCommerce.order.model;
 
-import project.spring.project.admin.category.model.CategorySelfDTO;
 import project.spring.project.admin.product.model.ProductChildDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
-public class CartChildDTO {
+public class OrderChildDTO {
     private Long id;
     private String session;
     private List<ProductChildDTO> products;

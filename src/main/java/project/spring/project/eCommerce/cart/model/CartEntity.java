@@ -23,8 +23,8 @@ public class CartEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity userId;
 
-    @NotNull
-    @Column(name="session", nullable = false, unique = true)
+
+    @Column(name="session",  unique = true)
     private String session;
 
     @ManyToMany

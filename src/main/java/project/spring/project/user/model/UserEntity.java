@@ -1,6 +1,8 @@
 package project.spring.project.user.model;
 
 
+import project.spring.project.eCommerce.order.model.OrderEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -23,12 +25,29 @@ public class UserEntity {
     private String passwordHash;
 
     @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrderEntity> orders = new ArrayList<>();
+
+    @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER
     )
     @JoinColumn(name="user_id")
     private List<RoleEntity> roles = new ArrayList<>();
+
+    public void addOrder(OrderEntity order) {
+        orders.add(order);
+        order.setUser(this);
+    }
+
+    public void removeOrder(OrderEntity order) {
+        orders.remove(order);
+        order.setUser(null);
+    }
 
     public long getId() {
         return id;

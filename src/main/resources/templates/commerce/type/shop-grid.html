@@ -11,81 +11,40 @@
 <!-- Navbar Electronics Store-->
 <header th:replace="commerce/fragments/header :: header"></header>
 <!-- Page title-->
-<!-- Page Content-->
-<!-- Hero (Banners + Slider)-->
-<section class="bg-secondary py-4 pt-md-5">
-    <div class="container py-xl-2">
-        <div class="row">
-            <!-- Slider     -->
-            <div class="col-xl-9 pt-xl-4 order-xl-2">
-                <div class="cz-carousel">
-                    <div class="cz-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;controls&quot;: false, &quot;loop&quot;: false}">
-                        <th:block th:each="topSlider : ${topSliderChildDTOList}">
-                        <div>
-                            <div class="row align-items-center">
-                                <div class="col-md-6 order-md-2"><img class="mx-auto"  th:src="${topSlider.getPhoto().getLocation()}" alt="VR Collection"></div>
-                                <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-left">
-                                    <span th:utext="${topSlider.getDescription()}" th:remove="tag">title</span>
-
-                                    <a class="btn btn-primary btn-shadow scale-up delay-1" th:href="${topSlider.getLink()}">Shop Now<i class="czi-arrow-right ml-2 mr-n1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        </th:block>
-
-
-                    </div>
-                </div>
-            </div>
-            <!-- Banner group-->
-            <div class="col-xl-3 order-xl-1 pt-4 mt-3 mt-xl-0 pt-xl-0">
-                <div class="table-responsive" data-simplebar>
-                    <div class="d-flex d-xl-block">
-                        <th:block th:each="topLeftDeal : ${topLeftDealChildDTOList}">
-                        <a class="media w-100 align-items-center  rounded-lg pt-2 pl-2 mb-4 mr-4 mr-xl-0" th:classappend="${topLeftDeal.getBackground()}" th:href="${topLeftDeal.getLink()}" style="min-width: 16rem;">
-                            <img th:src="${topLeftDeal.getPhoto().getLocation()}" width="125" alt="Banner">
-                            <div class="media-body py-4 px-2">
-                                <h5 class="mb-2">  <span th:utext="${topLeftDeal.getDescription()}" th:remove="tag">title</span></h5>
-                                <div class="text-info font-size-sm">Shop now<i class="czi-arrow-right font-size-xs ml-1"></i></div>
-                            </div>
-                        </a>
-                        </th:block>
-
-                    </div>
-                </div>
+<!-- Custom page title-->
+<div class="page-title-overlap bg-dark pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+            <h1 class="h3 text-light mb-2" th:text="${typeChildDTO.getName()}">Smartwatch Youth Edition</h1>
+            <div>
+                <div class="star-rating"><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star"></i>
+                </div><span class="d-inline-block font-size-sm text-white opacity-70 align-middle mt-1 ml-1">74 Reviews</span>
             </div>
         </div>
     </div>
-</section>
-<!-- Products grid (Trending products)-->
-<section class="container pt-5">
-    <!-- Heading-->
-    <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-        <h2 class="h3 mb-0 pt-3 mr-2" th:text="${homeFeaturedMainChildDto.getName()}">Trending products</h2>
-        <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="shop-grid-ls.html">More products<i class="czi-arrow-right ml-1 mr-n1"></i></a></div>
-    </div>
-    <!-- Grid-->
-    <div class="row pt-2 mx-n2">
+</div>
+<!-- Page Content-->
+<div class="container pb-5 mb-2 mb-md-4">
+
+    <!-- Products grid-->
+    <div class="row pt-3 mx-n2">
         <!-- Product-->
-        <th:block th:each="mainProduct : ${homeFeaturedMainChildDto.getProducts()}">
+        <th:block th:each="product : ${typeChildDTO.getProducts()}">
         <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
-                <div class="product-card-actions d-flex align-items-center">
-                    <button class="btn-wishlist btn-sm" type="button" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="czi-heart"></i></button>
-                </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img th:src="${mainProduct.getPhotos().get(0).getLocation()}" alt="Product"></a>
+
+                <a class="card-img-top d-block overflow-hidden" th:href="@{'~/product/' + ${product.getId()}}"><img th:src="${product.getPhotos().get(0).getLocation()}" alt="Product"></a>
                 <div class="card-body py-2">
-                    <h3 class="product-title font-size-sm"><a href="shop-single-v2.html" th:text="${mainProduct.getName()}">Wireless Bluetooth Headphones</a></h3>
+                    <h3 class="product-title font-size-sm"><a th:href="@{'~/product/' + ${product.getId()}}" th:text="${product.getName()}">Women Colorblock Sneakers</a></h3>
                     <div class="d-flex justify-content-between">
-                        <div class="product-price"><span class="text-accent" th:text="'$'+${mainProduct.getPrice()}">$198.<small>00</small></span></div>
-                        <div class="star-rating"><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i>
-                        </div>
-                    </div>
+                        <div class="product-price"><span class="text-accent"th:text="'$'+${product.getPrice()}">$154.<small>00</small></span></div>
+                       </div>
                 </div>
                 <div class="card-body card-body-hidden">
-                    <form method="POST" th:action="@{'~/cart/add/' + ${mainProduct.getId()}}">
-                    <button  class="btn btn-primary btn-sm btn-block mb-2" type="submit" data-toggle="toast" data-target="#cart-toast"><i class="czi-cart font-size-sm mr-1"></i>Add to Cart</button>
+                    <form method="POST" th:action="@{'~/cart/add/' + ${product.getId()}}">
+                        <button  class="btn btn-primary btn-sm btn-block mb-2" type="submit" data-toggle="toast" data-target="#cart-toast"><i class="czi-cart font-size-sm mr-1"></i>Add to Cart</button>
                     </form>
-                        <div class="text-center"><a class="nav-link-style font-size-ms" href="#quick-view-electro" data-toggle="modal"><i class="czi-eye align-middle mr-1"></i>Quick view</a></div>
+                    <div class="text-center"><a class="nav-link-style font-size-ms" href="#quick-view" data-toggle="modal"><i class="czi-eye align-middle mr-1"></i>Quick view</a></div>
                 </div>
             </div>
             <hr class="d-sm-none">
@@ -93,89 +52,24 @@
         </th:block>
 
     </div>
-</section>
-<!-- Promo banner-->
-<section class="container mt-4 mb-grid-gutter">
-    <th:block th:each="promoBanner : ${promoBannerChildDTOList}">
-    <div class="bg-faded-info rounded-lg py-4">
-        <div class="row align-items-center">
-            <div class="col-md-5">
-                <div class="px-4 pr-sm-0 pl-sm-5"><span class="badge badge-danger">Limited Offer</span>
-                    <span th:utext="${promoBanner.getDescription()}" th:remove="tag">title</span>
-                    <div class="cz-countdown py-2 h4" th:attr="data-countdown=${promoBanner.getDate()}" >
-                        <div class="cz-countdown-days"><span class="cz-countdown-value"></span><span class="cz-countdown-label text-muted">d</span></div>
-                        <div class="cz-countdown-hours"><span class="cz-countdown-value"></span><span class="cz-countdown-label text-muted">h</span></div>
-                        <div class="cz-countdown-minutes"><span class="cz-countdown-value"></span><span class="cz-countdown-label text-muted">m</span></div>
-                        <div class="cz-countdown-seconds"><span class="cz-countdown-value"></span><span class="cz-countdown-label text-muted">s</span></div>
-                    </div><a class="btn btn-accent" href="#">View offers<i class="czi-arrow-right font-size-ms ml-1"></i></a>
-                </div>
-            </div>
-            <div class="col-md-7"><img th:src="${promoBanner.getPhoto().getLocation()}" alt="iPad Pro Offer"></div>
-        </div>
-    </div>
-    </th:block>
-</section>
-<!-- Brands carousel-->
-<section class="container mb-5">
-    <div class="cz-carousel border-right">
-        <div class="cz-carousel-inner" data-carousel-options="{ &quot;nav&quot;: false, &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 4000, &quot;loop&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;360&quot;:{&quot;items&quot;:2},&quot;600&quot;:{&quot;items&quot;:3},&quot;991&quot;:{&quot;items&quot;:4},&quot;1200&quot;:{&quot;items&quot;:4}} }">
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/13.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/14.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/17.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/16.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/15.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/18.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/19.png" style="width: 165px;" alt="Brand"></a></div>
-            <div><a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right: -.0625rem;"><img class="d-block mx-auto" src="img/shop/brands/20.png" style="width: 165px;" alt="Brand"></a></div>
-        </div>
-    </div>
-</section>
-<!-- Product widgets-->
-<section class="container pb-4 pb-md-5">
-    <div class="row">
-        <th:block th:each="homeFeatured : ${homeFeaturedChildDTOList}">
-        <!-- Bestsellers-->
-        <div class="col-lg-4 col-md-6 mb-2 py-3">
-            <div class="widget">
-                <h3 class="widget-title" th:text="${homeFeatured.getName()}">Bestsellers</h3>
-                <th:block th:each="product : ${homeFeatured.getProducts()}">
-                <div class="media align-items-center pb-2 border-bottom"><a class="d-block mr-2" th:href="@{'~/product/' + ${product.getId()}}"><img width="64" th:src="${product.getPhotos().get(0).getLocation()}" alt="Product"/></a>
-                    <div class="media-body">
-                        <h6 class="widget-product-title"><a href="shop-single-v2.html" th:text="${product.getName()}">Wireless Bluetooth Headphones</a></h6>
-                        <div class="widget-product-meta"><span class="text-accent"th:text="'$'+${product.getPrice()}">$259.<small>00</small></span></div>
-                    </div>
-                </div>
-                </th:block>
-                <p class="mb-0">...</p><a class="font-size-sm" href="shop-grid-ls.html">View more<i class="czi-arrow-right font-size-xs ml-1"></i></a>
-            </div>
-        </div>
-        </th:block>
-    </div>
-</section>
-<!-- Blog + Instagram info cards-->
-<section class="container-fluid px-0">
-    <div class="row no-gutters">
-        <div class="col-md-6"><a class="card border-0 rounded-0 text-decoration-none py-md-4 bg-faded-primary" href="blog-list-sidebar.html">
-            <div class="card-body text-center"><i class="czi-edit h3 mt-2 mb-4 text-primary"></i>
-                <h3 class="h5 mb-1">Read the blog</h3>
-                <p class="text-muted font-size-sm">Latest store, fashion news and trends</p>
-            </div></a></div>
-        <div class="col-md-6"><a class="card border-0 rounded-0 text-decoration-none py-md-4 bg-faded-accent" href="#">
-            <div class="card-body text-center"><i class="czi-instagram h3 mt-2 mb-4 text-accent"></i>
-                <h3 class="h5 mb-1">Follow on Instagram</h3>
-                <p class="text-muted font-size-sm">#ShopWithCartzilla</p>
-            </div></a></div>
-    </div>
-</section>
-<!-- Toast: Added to Cart-->
-<div class="toast-container toast-bottom-center">
-    <div class="toast mb-3" id="cart-toast" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header bg-success text-white"><i class="czi-check-circle mr-2"></i>
-            <h6 class="font-size-sm text-white mb-0 mr-auto">Added to cart!</h6>
-            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="toast-body">This item has been added to your cart.</div>
-    </div>
+    <hr class="my-3">
+    <!-- Pagination-->
+<!--    <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item"><a class="page-link" href="#"><i class="czi-arrow-left mr-2"></i>Prev</a></li>-->
+<!--        </ul>-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>-->
+<!--            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="sr-only">(current)</span></span></li>-->
+<!--            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>-->
+<!--            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>-->
+<!--            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>-->
+<!--            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>-->
+<!--        </ul>-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item"><a class="page-link" href="#" aria-label="Next">Next<i class="czi-arrow-right ml-2"></i></a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
 </div>
 <!-- Footer-->
 <!-- Footer-->
@@ -329,10 +223,7 @@
     </div>
 </footer>
 <!-- Toolbar for handheld devices-->
-<div class="cz-handheld-toolbar">
-    <div class="d-table table-fixed w-100"><a class="d-table-cell cz-handheld-toolbar-item" href="account-wishlist.html"><span class="cz-handheld-toolbar-icon"><i class="czi-heart"></i></span><span class="cz-handheld-toolbar-label">Wishlist</span></a><a class="d-table-cell cz-handheld-toolbar-item" href="#navbarCollapse" data-toggle="collapse" onclick="window.scrollTo(0, 0)"><span class="cz-handheld-toolbar-icon"><i class="czi-menu"></i></span><span class="cz-handheld-toolbar-label">Menu</span></a><a class="d-table-cell cz-handheld-toolbar-item" href="shop-cart.html"><span class="cz-handheld-toolbar-icon"><i class="czi-cart"></i><span class="badge badge-primary badge-pill ml-1">4</span></span><span class="cz-handheld-toolbar-label">$265.00</span></a>
-    </div>
-</div>
+<th:block th:include="~{commerce/fragments/toolbar-for-handheld-device}"></th:block>
 <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Top</span><i class="btn-scroll-top-icon czi-arrow-up">   </i></a>
 <!-- Vendor scrits: js libraries and plugins-->
 <th:block th:include="~{commerce/fragments/bottom-js}"></th:block>

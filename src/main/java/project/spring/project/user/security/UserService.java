@@ -42,6 +42,10 @@ public class UserService {
         return userRepository.findOneByEmail(email).isPresent();
     }
 
+    public UserEntity getById(Long id){
+        return userRepository.getOne(id);
+    }
+
     public Long getIdOfUser(String email){
         Objects.requireNonNull(email);
 
